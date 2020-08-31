@@ -10,23 +10,13 @@ module.exports = {
   mode: 'development',
   // 入口 这里应用程序开始执行
   entry: path.resolve(__dirname, `${srcDir}/index.tsx`),
-  // 出口 
-  output: {
-    // 输出文件的目标路径
-    path: path.resolve(__dirname, '../dist'),
-    // 输出的文件名
-    filename: '[name].[chunk:8].js',
-    chunkFilename: 'chunk/[name].[chunkhash:8].js',
-    // 输出解析文件的目录。静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径
-    publicPath: './'
-  },
-  target: 'web',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     modules: [path.resolve(__dirname, './src.v2'), 'node_modules'],
     alias: {
       '@': path.resolve(__dirname, srcDir),
       '@/layouts': path.resolve(__dirname, `${srcDir}/layouts`),
+      '@/services': path.resolve(__dirname, `${srcDir}/services`),
       '@/pages': path.resolve(__dirname, `${srcDir}/src/pages`),
       '@/components': path.resolve(__dirname, `${srcDir}/components`),
     },
@@ -66,7 +56,7 @@ module.exports = {
         loader: MiniCssExtractPlugin.loader
       }, 'css-loader'],
       // exclude: /node_modules/, //屏蔽不需要处理的文件夹
-      include: path.resolve(__dirname, srcDir) //手动指定必须处理的文件夹
+      // include: path.resolve(__dirname, srcDir) //手动指定必须处理的文件夹
     }, {
       test: /\.(gif|jpg|png|bmp|eot|woff|woff2|ttf|svg)/,
       use: [{
@@ -89,7 +79,7 @@ module.exports = {
       {
         loader: "sass-loader", // 将 Sass 编译成 CSS
         options: {
-          data: `@import "styles/variables.scss";`,
+          additionalData: `@import "@/styles/variables.scss";`,
         },
       }
       ]

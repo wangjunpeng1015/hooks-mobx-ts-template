@@ -1,9 +1,12 @@
 import React from 'react';
 
-const context = {};
+interface Context {
+  [_: string]: any;
+}
+const context: Context = {};
 
-const req = require.context('.', true, /Store$/);
-req.keys().forEach(key => {
+const req = require["context"]('.', true, /Store$/);
+req.keys().forEach((key: any) => {
   const name = key.match(/([a-zA-Z0-9].*)$/)[1];
   const Store = req(key).default;
   context[name] = new Store();

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "module": "esnext",
     "target": "es5",
     "lib": [
@@ -12,6 +12,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "rootDir": ".",
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": false,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -26,6 +27,9 @@
       ],
       "@/layouts/*": [
         "src/layouts/*"
+      ],
+      "@/services/*": [
+        "src/services/*"
       ],
       "@/stores/*": [
         "src/stores/*"
@@ -46,7 +50,9 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts",
-    "*.js"
+    "*.js",
+    "*.jsx",
+    "*.ts",
+    "*.tsx",
   ]
 }

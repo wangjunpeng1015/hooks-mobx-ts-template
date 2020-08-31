@@ -6,7 +6,7 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-// import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.css';
 // import './index.scss';
 
 moment.locale('zh-cn');
@@ -14,10 +14,17 @@ moment.locale('zh-cn');
 const App = () => {
   return (
     <ConfigProvider locale={zhCN}>
-      <div>123</div>
-      {/* <AppRouter /> */}
+      <AppRouter />
     </ConfigProvider>
   );
 };
 
 render(<App />, document.getElementById('root'));
+// 热更新
+if (module.hot) {
+  module.hot.accept(err => {
+    if (err) {
+      console.error('module.hot，', err);
+    }
+  });
+}

@@ -9,7 +9,7 @@ import {
 import { observer } from 'mobx-react';
 
 import { appStores } from '@/stores';
-import './style.less';
+import './style.scss';
 
 const LoginPage = props => {
   const {

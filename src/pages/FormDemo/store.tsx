@@ -4,9 +4,23 @@ import { message } from 'antd';
 import { createContext } from 'react';
 import moment from 'moment';
 
-import request from '@/services/newRequest';
+import request from '@/services/request';
+
+export interface Pagination {
+  size: string,
+  pageSize: number,
+  currentPage: number,
+  total: number,
+  showSizeChanger: Boolean,
+  onChange(x: number, y: number): void,
+  onShowSizeChange(x: number, y: number): void,
+  showTotal(p: string): string,
+}
 
 class CompanySetStore {
+
+  private recordLoding = false;
+
   @observable tableData = [
     {
       name: '阿里巴巴',
@@ -34,7 +48,7 @@ class CompanySetStore {
 
   @observable modalData = {};
 
-  @observable pagination = {
+  @observable pagination: Pagination = {
     size: 'small',
     pageSize: 10,
     currentPage: 1,

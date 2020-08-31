@@ -5,9 +5,9 @@ const {
 const commonConfig = require('./webpack.config');
 module.exports = merge(commonConfig, {
   mode: 'development',
+  target: 'web',
   // devtool: 'eval-source-map',
   devServer: {
-    index: 'index.html',
     hot: true,
     host: '0.0.0.0',
     inline: true,

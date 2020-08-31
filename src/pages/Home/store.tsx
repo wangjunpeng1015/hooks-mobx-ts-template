@@ -1,9 +1,10 @@
 /* eslint-disable import/extensions */
 import { createContext } from 'react';
 import { observable, action } from 'mobx';
-import request from '@/services/newRequest';
+import request from '@/services/request';
 
 class HomeStore {
+
   @observable tableData = [];
 
   @observable pageTitle = 'Home主页';
@@ -11,7 +12,7 @@ class HomeStore {
   @observable loading = false;
 
   @action.bound setData(data = {}) {
-    Object.entries(data).forEach(item => {
+    Object.entries(data).forEach((item: any) => {
       this[item[0]] = item[1];
     });
   }

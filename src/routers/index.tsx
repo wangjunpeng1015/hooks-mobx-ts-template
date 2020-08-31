@@ -55,8 +55,7 @@ const AppRouter = () => {
   //   path={'/welcome'}
   //   exact={true}
   // ></Router>
-  return <div>123</div>
-  // return <Router>{renderRoutes(config)}</Router>;
+  return <Router>{renderRoutes(config)}</Router>;
 };
 
 export default AppRouter;

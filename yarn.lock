@@ -4682,6 +4682,11 @@ mobx-react-lite@>=2.0.6:
   resolved "https://registry.npm.taobao.org/mobx-react-lite/download/mobx-react-lite-2.1.0.tgz#1c70723832317ba55ac2094fec66845e3d320f45"
   integrity sha1-HHByODIxe6VawglP7GaEXj0yD0U=
 
+mobx-react-router@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/mobx-react-router/download/mobx-react-router-4.1.0.tgz#de014848207d8aa32f6a4e67ed861bd2cb6516e5"
+  integrity sha1-3gFISCB9iqMvak5n7YYb0stlFuU=
+
 mobx-react@^6.2.5:
   version "6.2.5"
   resolved "https://registry.npm.taobao.org/mobx-react/download/mobx-react-6.2.5.tgz#9020a17b79cc6dc3d124ad89ab36eb9ea540a45b"
@@ -6204,7 +6209,7 @@ react-router-dom@^5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5.2.0:
+react-router@5.2.0, react-router@^5.2.0:
   version "5.2.0"
   resolved "https://registry.npm.taobao.org/react-router/download/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"
   integrity sha1-Qk51ZByodH+/duXsyml4GqN+opM=

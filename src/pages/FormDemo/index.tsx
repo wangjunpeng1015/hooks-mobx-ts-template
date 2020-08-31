@@ -6,7 +6,7 @@ import { toJS } from 'mobx';
 import Store from './store';
 import NewModal from './newModal';
 import SearchForm from './searchForm';
-import './style.less';
+import './style.scss';
 
 const FormDemoPage = () => {
   const pageStore = React.useContext(Store);

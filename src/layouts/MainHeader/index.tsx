@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 import { appStores } from '@/stores';
-import './style.less';
+import './style.scss';
 
 const menu = (
   <Menu>
@@ -33,7 +33,7 @@ const MainHeader = () => {
   const { globalStore } = appStores();
   return (
     <Layout.Header className="main-header">
-      <Row type="flex" style={{ paddingRight: 20 }}>
+      <Row style={{ paddingRight: 20 }}>
         <Col style={{ flex: 1 }}>
           {
             <div className="trigger" onClick={globalStore.toggleCollapsed}>

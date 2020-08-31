@@ -45,11 +45,6 @@ const config = [
             icon: 'setting',
             childRoutes: [
               {
-                path: '/system/groovySet',
-                name: 'Groovy脚本管理',
-                component: lazy(() => import('@/pages/System/GroovySet')),
-              },
-              {
                 path: '/system/user',
                 name: '用户配置',
                 icon: 'user',

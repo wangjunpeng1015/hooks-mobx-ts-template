@@ -15,6 +15,16 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 
 module.exports = merge(commonConfig, {
   mode: 'production',
+  // 出口 
+  output: {
+    // 输出文件的目标路径
+    path: path.resolve(__dirname, '../dist'),
+    // 输出的文件名
+    filename: '[name].[chunk:8].js',
+    chunkFilename: 'chunk/[name].[chunkhash:8].js',
+    // 输出解析文件的目录。静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径
+    publicPath: './'
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash:8].css",

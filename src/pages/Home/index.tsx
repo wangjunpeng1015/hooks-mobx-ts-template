@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { Button } from 'antd';
 import Store from './store';
 
-import './style.less';
+import './style.scss';
 
 const HomePage = () => {
   // useContext 订阅mobx数据
@@ -27,6 +27,14 @@ const HomePage = () => {
           onClick={() => setNum(num + 1)}
         >
           +1
+        </Button>
+        <Button
+          type="primary"
+          size="small"
+          style={{ marginLeft: 10 }}
+          onClick={() => setNum(num - 1)}
+        >
+          -1
         </Button>
       </div>
     </div>
