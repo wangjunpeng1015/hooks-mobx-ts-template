@@ -1,19 +1,21 @@
 /* eslint-disable import/extensions */
-import React, { useEffect, useState, useMemo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { observer } from 'mobx-react';
-import { Layout, Menu, Row } from 'antd';
-import {
-  CarOutlined,
-} from '@ant-design/icons';
-import { appStores } from '@/stores';
-import './style.scss';
+// @ts-nocheck
+import React, { useEffect, useState, useMemo } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { observer } from 'mobx-react'
+import { Layout, Menu, Row } from 'antd'
+import { CarOutlined } from '@ant-design/icons'
+import { appStores } from '@/stores'
+import './style.scss'
 
 const renderMenuItem = (target: any) => {
   return target
     .filter((item: any) => item.path && item.name)
     .map((subMenu: any) => {
-      if (subMenu.childRoutes && !!subMenu.childRoutes.find((child: any) => child.path && child.name)) {
+      if (
+        subMenu.childRoutes &&
+        !!subMenu.childRoutes.find((child: any) => child.path && child.name)
+      ) {
         return (
           <Menu.SubMenu
             key={subMenu.path}
@@ -26,7 +28,7 @@ const renderMenuItem = (target: any) => {
           >
             {renderMenuItem(subMenu.childRoutes)}
           </Menu.SubMenu>
-        );
+        )
       }
       return (
         <Menu.Item key={subMenu.path}>
@@ -37,30 +39,36 @@ const renderMenuItem = (target: any) => {
             </span>
           </Link>
         </Menu.Item>
-      );
-    });
-};
+      )
+    })
+}
 
 const SiderMenu = ({ routes }) => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
   // console.log(pathname);
-  const { globalStore } = appStores();
-  const [openKeys, setOpenKeys] = useState([]);
+  const { globalStore } = appStores()
+  const [openKeys, setOpenKeys] = useState([])
 
   useEffect(() => {
-    const list = pathname.split('/').splice(1);
-    setOpenKeys(list.map((_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`));
-  }, []);
+    const list = pathname.split('/').splice(1)
+    setOpenKeys(
+      list.map(
+        (_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`
+      )
+    )
+  }, [])
 
   const getSelectedKeys = useMemo(() => {
-    console.log('getSelectedKeys');
-    const list = pathname.split('/').splice(1);
-    return list.map((_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`);
-  }, [pathname]);
+    console.log('getSelectedKeys')
+    const list = pathname.split('/').splice(1)
+    return list.map(
+      (_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`
+    )
+  }, [pathname])
 
   const onOpenChange = (keys: React.SetStateAction<never[]>) => {
-    setOpenKeys(keys);
-  };
+    setOpenKeys(keys)
+  }
 
   return (
     <Layout.Sider
@@ -72,7 +80,9 @@ const SiderMenu = ({ routes }) => {
       <Link to="/">
         <Row align="middle" className="main-logo">
           <CarOutlined style={{ color: '#13e367' }} />
-          {!globalStore.collapsed && <span className="app-name">{globalStore.appTitle}</span>}
+          {!globalStore.collapsed && (
+            <span className="app-name">{globalStore.appTitle}</span>
+          )}
         </Row>
       </Link>
       <Menu
@@ -87,7 +97,7 @@ const SiderMenu = ({ routes }) => {
         {renderMenuItem(routes)}
       </Menu>
     </Layout.Sider>
-  );
-};
+  )
+}
 
-export default observer(SiderMenu);
+export default observer(SiderMenu)

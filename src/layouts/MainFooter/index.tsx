@@ -1,7 +1,7 @@
 import React from 'react';
-import {Layout } from 'antd';
+import { Layout } from 'antd';
 
-const MainFooter = (props) => {
+const MainFooter = () => {
   return (
     <Layout.Footer>底部</Layout.Footer>
   )

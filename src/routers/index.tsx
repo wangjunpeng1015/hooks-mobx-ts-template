@@ -5,7 +5,7 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import LoadingPage from '@/components/LoadingPage';
 import config from './config';
 
-const renderRoutes = routes => {
+const renderRoutes = (routes: Array<any>) => {
   if (!Array.isArray(routes)) {
     return null;
   }

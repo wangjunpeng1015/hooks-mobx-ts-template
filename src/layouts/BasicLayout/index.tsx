@@ -1,10 +1,11 @@
-import React from 'react';
-import { Layout } from 'antd';
-import SiderMenu from '../SiderMenu';
-import MainHeader from '../MainHeader';
+// @ts-nocheck
+import React from 'react'
+import { Layout } from 'antd'
+import SiderMenu from '../SiderMenu'
+import MainHeader from '../MainHeader'
 // import MainFooter from "../MainFooter";
 
-import './style.scss';
+import './style.scss'
 
 const BasicLayout = ({ route, children }) => {
   // console.log(route, children);
@@ -20,7 +21,7 @@ const BasicLayout = ({ route, children }) => {
         </Layout.Content>
       </Layout>
     </Layout>
-  );
-};
+  )
+}
 
-export default BasicLayout;
+export default BasicLayout

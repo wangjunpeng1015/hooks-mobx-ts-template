@@ -1,30 +1,38 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { Form, Input, Select, Modal } from 'antd';
-import { toJS } from 'mobx';
-import Store from './store';
+// @ts-nocheck
+import React, { useContext } from 'react'
+import { observer } from 'mobx-react'
+import { Form, Input, Select, Modal } from 'antd'
+import { toJS } from 'mobx'
+import Store from './store'
 
 const status = [
   { key: true, label: '正常' },
   { key: false, label: '停用' },
-];
+]
 
-const myModal = props => {
+interface ModalData {
+  name: string
+  id: number
+  status: boolean
+  [_: string]: any
+}
+
+const myModal = (props: { form: any }) => {
   const {
     form: { getFieldDecorator },
-  } = props;
-  const pageStore = React.useContext(Store);
-  const modalData = toJS(pageStore.modalData);
+  } = props
+  const pageStore = useContext(Store)
+  const modalData = toJS(pageStore.modalData) as ModalData
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    props.form.validateFields((err, values) => {
+  const handleSubmit = (e: Event) => {
+    e.preventDefault()
+    props.form.validateFields((err: any, values: any) => {
       if (!err) {
         // console.log(values);
-        pageStore.addNew(values);
+        pageStore.addNew(values)
       }
-    });
-  };
+    })
+  }
   return (
     <Modal
       title={pageStore.modalTitle}
@@ -37,7 +45,9 @@ const myModal = props => {
         <Form.Item label="项目名称">
           {getFieldDecorator('name', {
             initialValue: modalData.name,
-            rules: [{ required: true, whitespace: true, message: '请输入项目名称' }],
+            rules: [
+              { required: true, whitespace: true, message: '请输入项目名称' },
+            ],
           })(<Input placeholder="请输入项目名称" maxLength={64} />)}
         </Form.Item>
         <Form.Item label="标识">
@@ -55,26 +65,27 @@ const myModal = props => {
               placeholder="请输入标识"
               maxLength={64}
               disabled={pageStore.modalType !== 'new'}
-            />,
+            />
           )}
         </Form.Item>
         <Form.Item label="状态">
           {getFieldDecorator('status', {
-            initialValue: modalData.status !== undefined ? modalData.status : true,
+            initialValue:
+              modalData.status !== undefined ? modalData.status : true,
             rules: [{ required: true, message: '请选择状态' }],
           })(
             <Select placeholder="请选择状态">
-              {status.map(item => (
+              {status.map((item) => (
                 <Select.Option value={item.key} key={item.key}>
                   {item.label}
                 </Select.Option>
               ))}
-            </Select>,
+            </Select>
           )}
         </Form.Item>
       </Form>
     </Modal>
-  );
-};
+  )
+}
 
-export default Form.create({ name: 'addnew' })(observer(myModal));
+export default observer(myModal)

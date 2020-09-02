@@ -1,20 +1,21 @@
-import React, { useEffect, useMemo } from 'react';
-import { Table, Button, Switch, Row, Divider } from 'antd';
-import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
+// @ts-nocheck
+import React, { useEffect, useMemo } from 'react'
+import { Table, Button, Switch, Row, Divider } from 'antd'
+import { observer } from 'mobx-react'
+import { toJS } from 'mobx'
 
-import Store from './store';
-import NewModal from './newModal';
-import SearchForm from './searchForm';
-import './style.scss';
+import Store from './store'
+import NewModal from './newModal'
+import SearchForm from './searchForm'
+import './style.scss'
 
 const FormDemoPage = () => {
-  const pageStore = React.useContext(Store);
+  const pageStore = React.useContext(Store)
   // console.log(pageStore);
   // 页面加载获取数据
   useEffect(() => {
-    pageStore.qryTableDate();
-  }, []);
+    pageStore.qryTableDate()
+  }, [])
 
   const columns = useMemo(
     () => [
@@ -32,13 +33,17 @@ const FormDemoPage = () => {
         title: '状态',
         dataIndex: 'status',
         width: 100,
-        render: (text, record, index) => (
+        render: (
+          text: boolean | undefined,
+          record: { statusLoading: boolean | undefined },
+          index: any
+        ) => (
           <Switch
             checkedChildren="正常"
             unCheckedChildren="停用"
             checked={text}
             loading={record.statusLoading}
-            onChange={type => pageStore.statusChange(type, record, index)}
+            onChange={(type) => pageStore.statusChange(type, record, index)}
           />
         ),
       },
@@ -51,8 +56,8 @@ const FormDemoPage = () => {
         title: '操作',
         dataIndex: 'operation',
         width: 150,
-        render: (text, record) => (
-          <Row type="flex" align="middle" className="operation">
+        render: (text: any, record: { status: boolean; id: number }) => (
+          <Row align="middle" className="operation">
             <Button
               type="link"
               disabled={record.status}
@@ -73,14 +78,18 @@ const FormDemoPage = () => {
         ),
       },
     ],
-    [],
-  );
+    []
+  )
 
   return (
     <div className="page-form-demo page-content">
       <SearchForm />
       <Divider dashed />
-      <Button type="primary" icon="plus" onClick={() => pageStore.openModal('new')}>
+      <Button
+        type="primary"
+        icon="plus"
+        onClick={() => pageStore.openModal('new')}
+      >
         新建
       </Button>
       <Table
@@ -93,7 +102,7 @@ const FormDemoPage = () => {
       />
       <NewModal />
     </div>
-  );
-};
+  )
+}
 
-export default observer(FormDemoPage);
+export default observer(FormDemoPage)

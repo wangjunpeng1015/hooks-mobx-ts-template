@@ -1,5 +1,6 @@
-import React from 'react';
+// @ts-nocheck
+import React from 'react'
 
-const BlankLayout = ({ children }) => <>{children}</>;
+const BlankLayout = ({ children }) => <>{children}</>
 
-export default BlankLayout;
+export default BlankLayout

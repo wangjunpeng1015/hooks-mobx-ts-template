@@ -1,36 +1,34 @@
 /* eslint-disable import/extensions */
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Form, Input, Checkbox, Button, message } from 'antd';
-import {
-  UserOutlined,
-  LockOutlined
-} from '@ant-design/icons';
-import { observer } from 'mobx-react';
+// @ts-nocheck
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { Form, Input, Checkbox, Button, message } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
+import { observer } from 'mobx-react'
 
-import { appStores } from '@/stores';
-import './style.scss';
+import { appStores } from '@/stores'
+import './style.scss'
 
-const LoginPage = props => {
+const LoginPage = (props) => {
   const {
     form: { getFieldDecorator },
-  } = props;
+  } = props
 
-  const history = useHistory();
-  const { globalStore } = appStores();
+  const history = useHistory()
+  const { globalStore } = appStores()
 
-  const handleSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault()
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('登录信息 ', values);
-        message.success('登录成功，即将跳转...', 2);
+        console.log('登录信息 ', values)
+        message.success('登录成功，即将跳转...', 2)
         setTimeout(() => {
-          history.push('/');
-        }, 2000);
+          history.push('/')
+        }, 2000)
       }
-    });
-  };
+    })
+  }
 
   return (
     <div className="page-login">
@@ -43,7 +41,7 @@ const LoginPage = props => {
             <Input
               prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="用户名"
-            />,
+            />
           )}
         </Form.Item>
         <Form.Item>
@@ -54,7 +52,7 @@ const LoginPage = props => {
               prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="密码"
-            />,
+            />
           )}
         </Form.Item>
         <Form.Item>
@@ -65,13 +63,17 @@ const LoginPage = props => {
           <a className="login-form-forgot" href="">
             忘记密码
           </a>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+          >
             登录
           </Button>
         </Form.Item>
       </Form>
     </div>
-  );
-};
+  )
+}
 
-export default Form.create({ name: 'login' })(observer(LoginPage));
+export default Form.create({ name: 'login' })(observer(LoginPage))
