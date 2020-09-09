@@ -1,65 +1,60 @@
 /* eslint-disable import/extensions */
 // @ts-nocheck
-import React from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Form, Input, Checkbox, Button, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { observer } from 'mobx-react'
 
 import { appStores } from '@/stores'
+import loginStore from './store'
 import './style.scss'
 
 const LoginPage = (props) => {
-  const {
-    form: { getFieldDecorator },
-  } = props
-
   const history = useHistory()
+  // useContext 订阅mobx数据
+  const loginStore = useContext(loginStore)
   const { globalStore } = appStores()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('登录信息 ', values)
-        message.success('登录成功，即将跳转...', 2)
-        setTimeout(() => {
-          history.push('/')
-        }, 2000)
-      }
-    })
+  const handleSubmit = (values) => {
+    console.log('登录信息 ', values)
+    message.success('登录成功，即将跳转...', 2)
+    setTimeout(() => {
+      history.push('/')
+    }, 2000)
   }
-
+  const onFinishFailed = ({ values, errorFields, outOfDate }) => {
+    console.log('Failed:', errorFields)
+  }
   return (
     <div className="page-login">
-      <Form onSubmit={handleSubmit} className="login-form">
+      <Form
+        onFinish={handleSubmit}
+        onFinishFailed={onFinishFailed}
+        className="login-form"
+      >
         <div className="login-title">欢迎登录 {globalStore.appTitle}</div>
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: '请输入用户名！' }],
-          })(
-            <Input
-              prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="用户名"
-            />
-          )}
+        <Form.Item
+          name="username"
+          rules={[{ required: true, message: '请输入用户名！' }]}
+        >
+          <Input
+            prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="用户名"
+          />
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入密码！' }],
-          })(
-            <Input
-              prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password"
-              placeholder="密码"
-            />
-          )}
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: '请输入密码！' }]}
+        >
+          <Input
+            prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+            type="password"
+            placeholder="密码"
+          />
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>记住我</Checkbox>)}
+        <Form.Item valuePropName="checked" initialValue={true}>
+          <Checkbox>记住我</Checkbox>
           <a className="login-form-forgot" href="">
             忘记密码
           </a>
@@ -76,4 +71,4 @@ const LoginPage = (props) => {
   )
 }
 
-export default Form.create({ name: 'login' })(observer(LoginPage))
+export default observer(LoginPage)

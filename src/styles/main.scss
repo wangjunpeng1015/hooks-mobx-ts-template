@@ -1,10 +1,10 @@
-@import "./resetAntd.less";
+@import './resetAntd.scss';
 
 html {
   background-color: #f0f2f5;
 }
 
-#app {
+#root {
   min-width: 1200px;
   width: 100vw;
   height: 100vh;
@@ -14,4 +14,28 @@ html {
   margin: 12px;
   padding: 16px;
   background: #fff;
+}
+//滚动条样式
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  background-color: #aeb6d5;
+  -webkit-border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  width: 5px;
+  background-color: #aeb6d5;
+  -webkit-border-radius: 3px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }

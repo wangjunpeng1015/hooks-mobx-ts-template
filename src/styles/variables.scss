@@ -1,1 +1,39 @@
-$color:#fff;
+$block-bg: rgba(0, 10, 36, 0.9);
+$block-title-bg: rgba(111, 219, 215, 0.15);
+$block-title-color: #00ffff;
+$color-orange: #f29961;
+
+// 板块阴影
+$block-shadow: 0 0 10px lightblue;
+// 版块动画
+$transition: 0.5s ease-in;
+
+// 主题色
+$color-primary: #009a63;
+// 默认色
+$color-default: #ffffff;
+$color-default-opacity: rgba(255, 255, 255, 0.65);
+// 特殊色
+$color-accent: #f29961;
+// 禁用色
+$color-disabled: #969696;
+// 警告色
+$color-danger: #e83935;
+// 背景色 较深蓝色
+$color-secondary: rgba(0, 10, 36, 0.9);
+// 背景色hover或激活后的突出颜色
+$color-secondary-active: #2d353d;
+// $color-secondary: rgba(111, 219, 215, 0.15);
+$color-primary-dark: #3c464f;
+
+$font-xl: 36px;
+$font-l: 24px;
+$font: 16px;
+$font-m: 12px;
+
+$space-l: 30px;
+$space: 15px;
+$space-m: 10px;
+
+$color-mode-switcher-active: $color-primary;
+$color-mode-switcher: rgba(153, 204, 255, 0.5);

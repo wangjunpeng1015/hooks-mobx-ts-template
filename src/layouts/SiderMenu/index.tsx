@@ -4,7 +4,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { Layout, Menu, Row } from 'antd'
-import { CarOutlined } from '@ant-design/icons'
+import { iconBC } from '@/utils'
 import { appStores } from '@/stores'
 import './style.scss'
 
@@ -19,24 +19,17 @@ const renderMenuItem = (target: any) => {
         return (
           <Menu.SubMenu
             key={subMenu.path}
-            title={
-              <div>
-                {subMenu.icon}
-                <span>{subMenu.name}</span>
-              </div>
-            }
+            icon={iconBC(subMenu.icon)}
+            title={subMenu.name}
           >
             {renderMenuItem(subMenu.childRoutes)}
           </Menu.SubMenu>
         )
       }
       return (
-        <Menu.Item key={subMenu.path}>
+        <Menu.Item key={subMenu.path} icon={iconBC(subMenu.icon)}>
           <Link to={subMenu.path}>
-            <span>
-              {subMenu.icon}
-              <span>{subMenu.name}</span>
-            </span>
+            <span>{subMenu.name}</span>
           </Link>
         </Menu.Item>
       )
@@ -59,7 +52,6 @@ const SiderMenu = ({ routes }) => {
   }, [])
 
   const getSelectedKeys = useMemo(() => {
-    console.log('getSelectedKeys')
     const list = pathname.split('/').splice(1)
     return list.map(
       (_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`
@@ -69,7 +61,8 @@ const SiderMenu = ({ routes }) => {
   const onOpenChange = (keys: React.SetStateAction<never[]>) => {
     setOpenKeys(keys)
   }
-
+  const route =
+    routes.find((n) => n.path === globalStore.firstMenuPath)?.childRoutes || []
   return (
     <Layout.Sider
       trigger={null}
@@ -77,14 +70,6 @@ const SiderMenu = ({ routes }) => {
       collapsed={globalStore.collapsed}
       className="main-left-slider"
     >
-      <Link to="/">
-        <Row align="middle" className="main-logo">
-          <CarOutlined style={{ color: '#13e367' }} />
-          {!globalStore.collapsed && (
-            <span className="app-name">{globalStore.appTitle}</span>
-          )}
-        </Row>
-      </Link>
       <Menu
         mode="inline"
         theme="dark"
@@ -94,7 +79,7 @@ const SiderMenu = ({ routes }) => {
         onOpenChange={onOpenChange}
         selectedKeys={getSelectedKeys}
       >
-        {renderMenuItem(routes)}
+        {renderMenuItem(route)}
       </Menu>
     </Layout.Sider>
   )

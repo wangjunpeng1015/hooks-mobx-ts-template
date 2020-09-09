@@ -1,17 +1,13 @@
 /* eslint-disable import/extensions */
-import React from 'react';
-import { Layout, Dropdown, Menu, Row, Col } from 'antd';
-import {
-  SmileOutlined,
-  LogoutOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined
-} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { observer } from 'mobx-react';
-
-import { appStores } from '@/stores';
-import './style.scss';
+import React from 'react'
+import { Layout, Dropdown, Menu, Row, Col } from 'antd'
+import { SmileOutlined, LogoutOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
+import { observer } from 'mobx-react'
+import Logo from '@/assets/images/header-logo.png'
+import { appStores } from '@/stores'
+import './style.scss'
+import menus from '@/routers/config'
 
 const menu = (
   <Menu>
@@ -27,31 +23,69 @@ const menu = (
       </Link>
     </Menu.Item>
   </Menu>
-);
+)
 
 const MainHeader = () => {
-  const { globalStore } = appStores();
+  const firstMenu =
+    menus[0].childRoutes[1].childRoutes?.filter((n) => n.name && n.path) || []
+  const { globalStore } = appStores()
+
   return (
     <Layout.Header className="main-header">
       <Row style={{ paddingRight: 20 }}>
-        <Col style={{ flex: 1 }}>
+        <Col offset={1}>
+          <Link to="/" className="main-logo">
+            {/* <CarOutlined style={{ color: '#13e367' }} /> */}
+            {!globalStore.collapsed && (
+              // <span className="app-name">{globalStore.appTitle}</span>
+              <img className="logo" src={Logo} />
+            )}
+          </Link>
+        </Col>
+        {/* <Col>
           {
             <div className="trigger" onClick={globalStore.toggleCollapsed}>
-              globalStore.collapsed?<MenuFoldOutlined />:<MenuUnfoldOutlined />
+              {globalStore.collapsed ? (
+                <MenuFoldOutlined />
+              ) : (
+                <MenuUnfoldOutlined />
+              )}
             </div>
           }
+        </Col> */}
+
+        <Col flex={1}>
+          <Row justify="end">
+            {/* 一级菜单 */}
+            <Menu
+              className="menu-one"
+              mode="horizontal"
+              onClick={({ key }) => (globalStore.firstMenuPath = key)}
+              defaultSelectedKeys={[globalStore.firstMenuPath]}
+            >
+              {firstMenu.map((n: any = {}) => (
+                <Menu.Item key={n.path}>{n.name}</Menu.Item>
+              ))}
+            </Menu>
+          </Row>
         </Col>
         <Col>
-          <Dropdown overlay={menu} trigger={['click', 'hover']} placement="bottomCenter">
+          <Dropdown
+            overlay={menu}
+            trigger={['click', 'hover']}
+            placement="bottomCenter"
+          >
             <div className="user-info">
               <span className="user-img" />
-              <span className="user-name">{globalStore.userInfo.loginName}</span>
+              <span className="user-name">
+                {globalStore.userInfo.loginName}
+              </span>
             </div>
           </Dropdown>
         </Col>
       </Row>
     </Layout.Header>
-  );
-};
+  )
+}
 
-export default observer(MainHeader);
+export default observer(MainHeader)

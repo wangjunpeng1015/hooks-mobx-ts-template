@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --color --progress --config build/webpack.dev.js",
-    "build": "NODE_ENV=production webpack --progress --config ./build/webpack.prod.js"
+    "start": "webpack-dev-server --color --progress --config ./build/webpack.dev.js",
+    "build": "webpack --progress --config ./build/webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -40,6 +40,7 @@
     "@ant-design/icons": "^4.2.2",
     "@types/react": "^16.9.48",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
     "antd": "^4.6.1",
     "axios": "^0.20.0",
     "mobx": "^5.15.6",

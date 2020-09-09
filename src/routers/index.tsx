@@ -1,13 +1,12 @@
 /* eslint-disable import/extensions */
-import React, { Suspense } from 'react';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Suspense } from 'react'
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
-import LoadingPage from '@/components/LoadingPage';
-import config from './config';
-
+import LoadingPage from '@/components/LoadingPage'
+import config from './config'
 const renderRoutes = (routes: Array<any>) => {
   if (!Array.isArray(routes)) {
-    return null;
+    return null
   }
 
   return (
@@ -22,7 +21,7 @@ const renderRoutes = (routes: Array<any>) => {
               from={route.path}
               to={route.redirect}
             />
-          );
+          )
         }
 
         return (
@@ -32,22 +31,24 @@ const renderRoutes = (routes: Array<any>) => {
             exact={route.exact}
             strict={route.strict}
             render={() => {
-              const renderChildRoutes = renderRoutes(route.childRoutes);
+              const renderChildRoutes = renderRoutes(route.childRoutes)
               if (route.component) {
                 return (
                   <Suspense fallback={<LoadingPage />}>
-                    <route.component route={route}>{renderChildRoutes}</route.component>
+                    <route.component route={route}>
+                      {renderChildRoutes}
+                    </route.component>
                   </Suspense>
-                );
+                )
               }
-              return renderChildRoutes;
+              return renderChildRoutes
             }}
           />
-        );
+        )
       })}
     </Switch>
-  );
-};
+  )
+}
 
 const AppRouter = () => {
   // console.log(renderRoutes(config));
@@ -55,7 +56,7 @@ const AppRouter = () => {
   //   path={'/welcome'}
   //   exact={true}
   // ></Router>
-  return <Router>{renderRoutes(config)}</Router>;
-};
+  return <Router>{renderRoutes(config)}</Router>
+}
 
-export default AppRouter;
+export default AppRouter

@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { createContext } from 'react'
 import { observable, action } from 'mobx'
-import request from '@/services/request'
+import request from '@/utils/request'
 
 class HomeStore {
   @observable tableData = []

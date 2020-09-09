@@ -1,8 +1,63 @@
-.main-header {
-  background: #fff;
+html .main-header {
+  background: $color-primary;
   padding: 0;
   z-index: 100;
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
+  .logo {
+    height: 22px;
+    width: 196px;
+  }
+  .main-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    height: 64px;
+    color: #fff;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(118, 141, 152, 0.2);
+    .app-name {
+      margin-left: 12px;
+      vertical-align: text-bottom;
+      font-size: 20px;
+      font-weight: 400;
+      // color: #fff;
+      text-overflow: clip;
+      white-space: nowrap;
+      // text-rendering: optimizeLegibility;
+      // -webkit-font-smoothing: antialiased;
+      // -moz-osx-font-smoothing: grayscale;
+      background-image: -webkit-linear-gradient(bottom, #13e367, #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+  .menu-one {
+    background: $color-primary;
+    .ant-menu-item {
+      color: $color-default-opacity;
+      border-bottom: none;
+      position: relative;
+      &:hover {
+        border-bottom: none;
+        color: $color-default;
+      }
+    }
+    .ant-menu-item-selected {
+      color: $color-default;
+      &::after {
+        position: absolute;
+        content: ' ';
+        height: 4px;
+        width: 30px;
+        border-radius: 4px;
+        background: #ffffff;
+        top: 70%;
+        left: 50%;
+        margin-left: -15px;
+      }
+    }
+  }
   .trigger {
     font-size: 18px;
     line-height: 64px;
@@ -10,9 +65,9 @@
     cursor: pointer;
     transition: color 0.3s;
 
-    &:hover {
-      color: #1890ff;
-    }
+    // &:hover {
+    //   color: $color-primary;
+    // }
   }
 
   .user-info {
@@ -28,7 +83,7 @@
       width: 32px;
       border-radius: 32px;
       border: 1px solid rgb(221, 221, 221);
-      background: url("~@/assets/images/nowthen.jpg") no-repeat;
+      background: url('~@/assets/images/nowthen.jpg') no-repeat;
       background-size: cover;
       display: inline-block;
     }

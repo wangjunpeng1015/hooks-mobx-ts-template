@@ -1,12 +1,15 @@
-const path = require('path');
-const {
-  merge
-} = require('webpack-merge');
-const commonConfig = require('./webpack.config');
+const path = require('path')
+const webpack = require('webpack')
+const { merge } = require('webpack-merge')
+const commonConfig = require('./webpack.config')
+
+const readEnv = require('./readEnv')
+const env = readEnv('../.env.development')
+
 module.exports = merge(commonConfig, {
   mode: 'development',
   target: 'web',
-  // devtool: 'eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     hot: true,
     host: '0.0.0.0',
@@ -22,5 +25,14 @@ module.exports = merge(commonConfig, {
         secure: false,
       },
     },
-  }
-});
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      // 定义环境和变量
+      'process.env': {
+        NODE_ENV: "'development'",
+        ...env,
+      },
+    }),
+  ],
+})

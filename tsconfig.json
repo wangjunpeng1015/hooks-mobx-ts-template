@@ -4,10 +4,7 @@
     "baseUrl": "./",
     "module": "esnext",
     "target": "es5",
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6", "dom"],
     "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
@@ -22,37 +19,24 @@
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@/layouts/*": [
-        "src/layouts/*"
-      ],
-      "@/services/*": [
-        "src/services/*"
-      ],
-      "@/stores/*": [
-        "src/stores/*"
-      ],
-      "@/pages/*": [
-        "src/pages/*"
-      ],
-      "@/components/*": [
-        "src/components/*"
-      ],
+      "@/*": ["src/*"],
+      "@/layouts/*": ["src/layouts/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/stores/*": ["src/stores/*"],
+      "@/pages/*": ["src/pages/*"],
+      "@/components/*": ["src/components/*"]
     },
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "exclude": [
     "node_modules",
     "build",
     "dist",
     "scripts",
-    "acceptance-tests",
     "webpack",
-    "jest",
     "*.js",
     "*.jsx",
     "*.ts",
-    "*.tsx",
+    "*.tsx"
   ]
 }

@@ -1,3 +1,5 @@
+import React from 'react'
+import * as Icon from '@ant-design/icons'
 const isDev = process.env.NODE_ENV === 'development' // 开发 or 生产
 
 interface Props {
@@ -87,4 +89,8 @@ export function splitUrl(url: string) {
     json[arr[0]] = arr[1]
   }
   return json
+}
+
+export function iconBC(name: string) {
+  return React.createElement(Icon && (Icon as any)[name], {})
 }

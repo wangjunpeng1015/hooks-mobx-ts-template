@@ -1,59 +1,112 @@
 /* eslint-disable import/extensions */
-import { lazy } from 'react';
+import { lazy } from 'react'
 
-import BasicLayout from '@/layouts/BasicLayout';
-import BlankLayout from '@/layouts/BlankLayout';
+import BasicLayout from '@/layouts/BasicLayout'
+import BlankLayout from '@/layouts/BlankLayout'
 
 const config = [
   {
     path: '/',
     component: BlankLayout, // 空白页布局
     childRoutes: [
-      // 子菜单路由
       {
         path: '/login', // 路由路径
         name: '登录页', // 菜单名称 (不设置,则不展示在菜单栏中）
-        icon: 'setting', // 菜单图标
+        icon: 'MessageOutlined', // 菜单图标
         component: lazy(() => import('@/pages/Login')), // 懒加载 路由组件
       },
+      // 子菜单路由
       {
         path: '/',
         // exact: true,
         component: BasicLayout, // 基本布局
         childRoutes: [
           {
+            path: '/daily',
+            name: '日常作业情况',
+            icon: 'MessageOutlined',
+            childRoutes: [
+              {
+                path: '/daily/transport-record',
+                name: '清运记录',
+                icon: 'MessageOutlined',
+                component: lazy(() => import('@/pages/System/User')),
+              },
+            ],
+          },
+          {
+            path: '/info',
+            name: '作业信息管理',
+            icon: 'MessageOutlined',
+            childRoutes: [
+              {
+                path: '/info/point-manage',
+                name: '作业点管理',
+                icon: 'MessageOutlined',
+                childRoutes: [
+                  {
+                    path: '/info/point-manage/transport-shop',
+                    name: '清运店铺管理',
+                    icon: 'MessageOutlined',
+                    component: lazy(() => import('@/pages/System/User')),
+                  },
+                ],
+              },
+              {
+                path: '/info/service-object',
+                name: '服务对象管理',
+                icon: 'MessageOutlined',
+                childRoutes: [
+                  {
+                    path: '/info/service-object/manage-shop',
+                    name: '商铺管理',
+                    icon: 'MessageOutlined',
+                    component: lazy(() => import('@/pages/System/User')),
+                  },
+                ],
+              },
+            ],
+          },
+          {
             path: '/welcome',
             name: '欢迎页',
-            icon: 'smile',
-            component: lazy(() => import('@/pages/Welcome')),
+            icon: 'MessageOutlined',
+            childRoutes: [
+              {
+                path: '/welcome/index',
+                name: '欢迎页',
+                icon: 'MessageOutlined',
+                component: lazy(() => import('@/pages/Home')),
+              },
+            ],
           },
           {
             path: '/home',
             name: 'home主页',
-            icon: 'home',
+            icon: 'MessageOutlined',
             component: lazy(() => import('@/pages/Home')),
           },
           {
             path: '/formDemo',
             name: '表单演示',
-            icon: 'form',
+            icon: 'MessageOutlined',
             component: lazy(() => import('@/pages/FormDemo')),
           },
           {
             path: '/system',
             name: '系统管理',
-            icon: 'setting',
+            icon: 'MessageOutlined',
             childRoutes: [
               {
                 path: '/system/user',
                 name: '用户配置',
-                icon: 'user',
+                icon: 'MessageOutlined',
                 component: lazy(() => import('@/pages/System/User')),
               },
               {
                 path: '/system/star',
                 name: '个人中心',
-                icon: 'star',
+                icon: 'MessageOutlined',
                 component: lazy(() => import('@/pages/System/Star')),
               },
             ],
@@ -62,25 +115,25 @@ const config = [
             path: '/exception',
             name: '异常页',
             // exact: true,
-            icon: 'warning',
+            icon: 'MessageOutlined',
             childRoutes: [
               {
                 path: '/exception/403',
                 name: '403',
-                icon: 'frown',
+                icon: 'MessageOutlined',
                 component: lazy(() => import('@/pages/Exception/403')),
               },
               {
                 path: '/exception/404',
                 name: '404',
                 exact: true,
-                icon: 'frown',
+                icon: 'MessageOutlined',
                 component: lazy(() => import('@/pages/Exception/404')),
               },
               {
                 path: '/exception/500',
                 name: '500',
-                icon: 'frown',
+                icon: 'MessageOutlined',
                 component: lazy(() => import('@/pages/Exception/500')),
               },
             ],
@@ -91,6 +144,6 @@ const config = [
       },
     ],
   },
-];
+]
 
-export default config;
+export default config

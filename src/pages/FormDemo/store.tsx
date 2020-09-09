@@ -5,7 +5,7 @@ import { message } from 'antd'
 import { createContext } from 'react'
 import moment from 'moment'
 
-import request from '@/services/request'
+import request from '@/utils/request'
 
 export interface Pagination {
   size: string
