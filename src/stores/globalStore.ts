@@ -1,12 +1,11 @@
 // @ts-nocheck
 import { observable, action } from 'mobx'
 import storage from '@/utils/storage'
-// import request from '@/services/request';
-// import logo from '@/assets/images/header-logo'
 export default class GlobalStore {
   @observable appTitle = '智慧环卫业务管理平台'
 
-  @observable firstMenuPath = '/info' // 一级菜单
+  @observable menuPath = ['/info'] // 一级菜单
+  @observable breads = [] // 面包屑
 
   @observable collapsed = false // 菜单收起展开
 

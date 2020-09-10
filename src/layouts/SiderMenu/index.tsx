@@ -51,8 +51,26 @@ const SiderMenu = ({ routes }) => {
     )
   }, [])
 
+  const breadcrumb = (pages, path) => {
+    if (Array.isArray(pages) && typeof path === 'string') {
+      const page = pages.find((n) => {
+        const sortPath = n.path.split('/').pop()
+        return sortPath === path
+      })
+      if (page) {
+        return page.name
+      } else {
+        const menu = pages.map((n) => {
+          return breadcrumb(n.childRoutes, path)
+        })
+        return new Set(menu)
+      }
+    }
+  }
+
   const getSelectedKeys = useMemo(() => {
     const list = pathname.split('/').splice(1)
+    globalStore.breads = list.map((path) => breadcrumb(routes, path))
     return list.map(
       (_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`
     )
@@ -62,7 +80,7 @@ const SiderMenu = ({ routes }) => {
     setOpenKeys(keys)
   }
   const route =
-    routes.find((n) => n.path === globalStore.firstMenuPath)?.childRoutes || []
+    routes.find((n) => n.path === globalStore.menuPath[0])?.childRoutes || []
   return (
     <Layout.Sider
       trigger={null}

@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { message } from 'antd'
-import { appStores } from '@/stores'
-import { useHistory } from 'react-router-dom'
-const history = useHistory()
-const { globalStore } = appStores()
+// import { appStores } from '@/stores'
+// const { globalStore } = appStores()
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.BASE_URL, // url = base url + request url
@@ -14,9 +12,9 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   (config) => {
-    if (globalStore.token) {
-      // config.headers['token'] = getToken()
-    }
+    // if (globalStore.token) {
+    // config.headers['token'] = getToken()
+    // }
     return config
   },
   (error) => {
@@ -35,10 +33,8 @@ service.interceptors.response.use(
       } else {
         message.error(data.msg)
         if (data.resultCode === '1004') {
-          globalStore.logOut()
-          setTimeout(() => {
-            history.push('/login')
-          }, 0)
+          window.location.href = '/login'
+          // globalStore.logOut()
           return {}
         }
         return Promise.reject(data.msg || 'Error')

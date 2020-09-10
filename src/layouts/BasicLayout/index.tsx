@@ -1,13 +1,16 @@
 // @ts-nocheck
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { Layout, Breadcrumb } from 'antd'
+import { observer } from 'mobx-react'
 import SiderMenu from '../SiderMenu'
 import MainHeader from '../MainHeader'
+import { appStores } from '@/stores'
 // import MainFooter from "../MainFooter";
 
 import './style.scss'
 
 const BasicLayout = ({ route, children }) => {
+  const { globalStore } = appStores()
   // console.log(route, children);
   return (
     <Layout className="main-layout">
@@ -18,9 +21,9 @@ const BasicLayout = ({ route, children }) => {
         <Layout className="main-layout-right">
           {/* 面包屑 */}
           <Breadcrumb>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
+            {globalStore.breads.map((name, i) => (
+              <Breadcrumb.Item key={i}>{name}</Breadcrumb.Item>
+            ))}
           </Breadcrumb>
           <Layout.Content className="main-layout-content">
             {children}
@@ -32,4 +35,4 @@ const BasicLayout = ({ route, children }) => {
   )
 }
 
-export default BasicLayout
+export default observer(BasicLayout)

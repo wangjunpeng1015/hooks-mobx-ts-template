@@ -27,7 +27,9 @@ const menu = (
 
 const MainHeader = () => {
   const firstMenu =
-    menus[0].childRoutes[1].childRoutes?.filter((n) => n.name && n.path) || []
+    menus[0].childRoutes[menus[0].childRoutes.length - 1].childRoutes?.filter(
+      (n) => n.name && n.path
+    ) || []
   const { globalStore } = appStores()
 
   return (
@@ -60,8 +62,8 @@ const MainHeader = () => {
             <Menu
               className="menu-one"
               mode="horizontal"
-              onClick={({ key }) => (globalStore.firstMenuPath = key)}
-              defaultSelectedKeys={[globalStore.firstMenuPath]}
+              onClick={({ key }) => (globalStore.menuPath[0] = key)}
+              defaultSelectedKeys={[globalStore.menuPath[0]]}
             >
               {firstMenu.map((n: any = {}) => (
                 <Menu.Item key={n.path}>{n.name}</Menu.Item>
