@@ -61,7 +61,12 @@ const config = [
                     path: '/info/service-object/manage-shop',
                     name: '商铺管理',
                     icon: 'MessageOutlined',
-                    component: lazy(() => import('@/pages/System/User')),
+                    component: lazy(
+                      () =>
+                        import(
+                          '@/pages/Info/ServiceObject/ManageShop/ObjectShop'
+                        )
+                    ),
                   },
                 ],
               },

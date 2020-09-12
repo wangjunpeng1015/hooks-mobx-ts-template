@@ -100,6 +100,32 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.less$/,
+        use: [
+          isDev
+            ? 'style-loader'
+            : {
+                loader: MiniCssExtractPlugin.loader,
+              },
+          {
+            loader: 'css-loader', // 将 CSS 转化成 CommonJS 模块
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                modifyVars: {
+                  'primary-color': '#009a63;', // 全局主色
+                  // 'link-color': '#1DA57A',
+                  // 'border-radius-base': '2px',
+                },
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

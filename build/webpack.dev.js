@@ -34,5 +34,6 @@ module.exports = merge(commonConfig, {
         ...env,
       },
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 })
