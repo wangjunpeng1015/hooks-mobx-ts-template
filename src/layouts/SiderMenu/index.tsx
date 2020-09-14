@@ -10,7 +10,7 @@ import './style.scss'
 
 const renderMenuItem = (target: any) => {
   return target
-    .filter((item: any) => item.path && item.name)
+    .filter((item: any) => item.path && item.name && !item.hidden)
     .map((subMenu: any) => {
       if (
         subMenu.childRoutes &&
@@ -51,17 +51,20 @@ const SiderMenu = ({ routes }) => {
     )
   }, [])
 
-  const breadcrumb = (pages, path) => {
+  const breadcrumb = (pages, path, isLast) => {
     if (Array.isArray(pages) && typeof path === 'string') {
       const page = pages.find((n) => {
         const sortPath = n.path.split('/').pop()
         return sortPath === path
       })
       if (page) {
+        if (isLast) {
+          globalStore.showBread = page.bread ?? true
+        }
         return page.name
       } else {
         const menu = pages.map((n) => {
-          return breadcrumb(n.childRoutes, path)
+          return breadcrumb(n.childRoutes, path, isLast)
         })
         return new Set(menu)
       }
@@ -69,8 +72,10 @@ const SiderMenu = ({ routes }) => {
   }
 
   const getSelectedKeys = useMemo(() => {
-    const list = pathname.split('/').splice(1)
-    globalStore.breads = list.map((path) => breadcrumb(routes, path))
+    const list = pathname.split('/').splice(1).slice(0, 3)
+    globalStore.breads = list.map((path, index) =>
+      breadcrumb(routes, path, index === list.length - 1)
+    )
     return list.map(
       (_item: any, index: number) => `/${list.slice(0, index + 1).join('/')}`
     )

@@ -30,6 +30,7 @@ const renderRoutes = (routes: Array<any>) => {
             path={route.path}
             exact={route.exact}
             strict={route.strict}
+            bread={route.bread}
             render={() => {
               const renderChildRoutes = renderRoutes(route.childRoutes)
               if (route.component) {

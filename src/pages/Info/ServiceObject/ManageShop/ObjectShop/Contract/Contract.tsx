@@ -1,26 +1,51 @@
-import React, { useContext } from 'react'
+// @ts-nocheck
+import React, { useContext, useState } from 'react'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
 import { Table, Row, Col, Input, Select, Button, Pagination } from 'antd'
 import { PlusSquareFilled, SearchOutlined } from '@ant-design/icons'
 import Store from './basecStore'
-interface User {
-  key: number | string
-  name: string
-  [_: string]: any
-}
-interface items {
-  [key: string]: any
-}
-
 interface columns {
   title: string
-  dataIndex: string
+  dataIndex?: string
   [_: string]: any
 }
-const Basic = (props) => {
+const initModals = [
+  {
+    title: '合同信息',
+    visible: false,
+    data: null,
+    key: 'contract',
+    componentPath: 'Add/index.tsx',
+  },
+  {
+    title: '企业信息',
+    visible: false,
+    data: null,
+    key: 'enterprise',
+    componentPath: 'Add/index.tsx',
+  },
+  {
+    title: '照片列表',
+    visible: false,
+    data: null,
+    key: 'photo',
+    componentPath: 'Add/index.tsx',
+  },
+  {
+    title: '操作',
+    visible: false,
+    data: null,
+    key: 'edit',
+    componentPath: 'Add/index.tsx',
+  },
+]
+
+const Basic = (_props) => {
+  const [modals, setModal] = useState(initModals)
+
   const store = useContext(Store)
-  const onSelectChange = (selectedRowKeys, selectedRows) => {
+  const onSelectChange = (_selectedRowKeys, selectedRows) => {
     store.selectedRowKeys = selectedRows.map((n: any) => n.key)
   }
   const search = () => {
@@ -80,7 +105,7 @@ const Basic = (props) => {
         )
       }
     })
-  const tableChange = (pagination, filters, sorter, extra) => {
+  const tableChange = (_pagination, _filters, sorter, _extra) => {
     const obj: any = {}
     if (Array.isArray(sorter)) {
       sorter.forEach((item) => {
@@ -94,6 +119,20 @@ const Basic = (props) => {
   }
   //删除
   const remove = () => {}
+  //显示弹窗
+  const openModal = (data, modalKey) => {
+    const modal = modals.find((n) => n.key == modalKey)
+    modal.data = data
+    modal.visible = true
+    setModal([...modals, modal])
+  }
+  //弹窗关闭
+  const modalClose = (modalKey) => {
+    const modal = modals.find((n) => n.key == modalKey)
+    modal.data = null
+    modal.visible = false
+    setModal([...modals, modal])
+  }
   return (
     <>
       {/*  搜索条件  */}
@@ -115,7 +154,7 @@ const Basic = (props) => {
             <Button
               type="primary"
               style={{ float: 'right' }}
-              onClick={() => toggleAddShop(true)}
+              onClick={() => openModal(null, 'edit')}
             >
               <PlusSquareFilled />
               添加
@@ -131,7 +170,49 @@ const Basic = (props) => {
           selectedRowKeys: store.selectedRowKeys,
           onChange: onSelectChange,
         }}
-        columns={toJS(store.columns) as columns[]}
+        columns={
+          toJS(store.columns).concat([
+            {
+              title: '合同信息',
+              render: (item) => (
+                <a className="link" onClick={() => openModal(item, 'contract')}>
+                  合同信息
+                </a>
+              ),
+              width: '40',
+            },
+            {
+              title: '企业信息',
+              render: (item) => (
+                <a
+                  className="link"
+                  onClick={() => openModal(item, 'enterprise')}
+                >
+                  企业信息
+                </a>
+              ),
+              width: '40',
+            },
+            {
+              title: '照片列表',
+              render: (item) => (
+                <a className="link" onClick={() => openModal(item, 'photo')}>
+                  查看
+                </a>
+              ),
+              width: '40',
+            },
+            {
+              title: '操作',
+              render: (item) => (
+                <a className="link" onClick={() => openModal(item, 'edit')}>
+                  编辑
+                </a>
+              ),
+              width: '40',
+            },
+          ]) as columns[]
+        }
         pagination={false}
         dataSource={toJS(store.tableData)}
         onChange={tableChange}
@@ -158,7 +239,32 @@ const Basic = (props) => {
           />
         </Col>
       </Row>
+      {/* 新增、编辑弹窗 */}
+      {modals.map((block) =>
+        renderComponent(block, {
+          close: () => modalClose(block.key),
+        })
+      )}
     </>
   )
+}
+function renderComponent(
+  { title, data, key, visible, componentPath },
+  extraProps = {}
+) {
+  try {
+    const Component = require(`../${componentPath}`).default
+    return (
+      <Component
+        {...extraProps}
+        data={data}
+        visible={visible}
+        blockTitle={title}
+        key={key}
+      />
+    )
+  } catch (e) {
+    return null
+  }
 }
 export default observer(Basic)

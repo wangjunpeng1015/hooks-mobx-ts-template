@@ -2,8 +2,15 @@ import React from 'react'
 import * as Icon from '@ant-design/icons'
 const isDev = process.env.NODE_ENV === 'development' // 开发 or 生产
 
-interface Props {
+export interface Props {
   [props: string]: any
+}
+interface ComponentParams {
+  title: string
+  componentPath: string
+  key?: string | number
+  visible?: boolean
+  data?: any
 }
 // 匹配接口前缀
 export function autoMatch(prefix: string) {
@@ -90,7 +97,27 @@ export function splitUrl(url: string) {
   }
   return json
 }
-
+//antd动态加载icon
 export function iconBC(name: string) {
   return React.createElement(Icon && (Icon as any)[name], {})
+}
+//加载组件
+export function renderComponent(
+  { title, data, key, visible, componentPath }: ComponentParams,
+  extraProps = {}
+) {
+  try {
+    const Component = require(`../${componentPath}`).default
+    return (
+      <Component
+        {...extraProps}
+        data={data}
+        visible={visible}
+        blockTitle={title}
+        key={key}
+      />
+    )
+  } catch (e) {
+    return null
+  }
 }

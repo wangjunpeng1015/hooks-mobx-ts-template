@@ -68,6 +68,17 @@ const config = [
                         )
                     ),
                   },
+                  {
+                    path: '/info/service-object/manage-shop-basic', //新增、编辑
+                    bread: false,
+                    hidden: true,
+                    component: lazy(
+                      () =>
+                        import(
+                          '@/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add'
+                        )
+                    ),
+                  },
                 ],
               },
             ],

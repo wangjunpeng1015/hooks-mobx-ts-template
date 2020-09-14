@@ -5,6 +5,8 @@ export default class GlobalStore {
   @observable appTitle = '智慧环卫业务管理平台'
 
   @observable menuPath = ['/info'] // 一级菜单
+
+  @observable showBread = true //是否显示面包屑
   @observable breads = [] // 面包屑
 
   @observable collapsed = false // 菜单收起展开

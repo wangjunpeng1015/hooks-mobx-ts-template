@@ -1,6 +1,6 @@
 import React from 'react'
-import Basic from './Basic'
-import Contract from './Contract'
+import Basic from './Basic/Basic'
+import Contract from './Contract/Contract'
 import { Tabs } from 'antd'
 import './index.scss'
 const { TabPane } = Tabs

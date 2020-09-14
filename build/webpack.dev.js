@@ -16,6 +16,7 @@ module.exports = merge(commonConfig, {
     inline: true,
     port: 3000,
     open: true,
+    hotOnly: true,
     // 开发模式下写/就行啦
     // 接口代理转发
     proxy: {
@@ -27,6 +28,7 @@ module.exports = merge(commonConfig, {
     },
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       // 定义环境和变量
       'process.env': {
@@ -34,6 +36,5 @@ module.exports = merge(commonConfig, {
         ...env,
       },
     }),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 })

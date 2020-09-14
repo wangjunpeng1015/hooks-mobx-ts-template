@@ -5,6 +5,32 @@ import request from '@/utils/request'
 import { message } from 'antd'
 class HomeStore {
   @observable loading = false
+  @observable modals = [
+    {
+      title: '合同信息',
+      visible: false,
+      data: null,
+      key: 'contract',
+    },
+    {
+      title: '企业信息',
+      visible: false,
+      data: null,
+      key: 'enterprise',
+    },
+    {
+      title: '照片列表',
+      visible: false,
+      data: null,
+      key: 'photo',
+    },
+    {
+      title: '操作',
+      visible: false,
+      data: null,
+      key: 'edit',
+    },
+  ]
 
   @observable tableData = [
     {

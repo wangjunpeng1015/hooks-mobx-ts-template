@@ -11,7 +11,7 @@ import './style.scss'
 
 const BasicLayout = ({ route, children }) => {
   const { globalStore } = appStores()
-  // console.log(route, children);
+  // console.log(route, children)
   return (
     <Layout className="main-layout">
       <MainHeader />
@@ -20,11 +20,13 @@ const BasicLayout = ({ route, children }) => {
         {/* 左侧菜单导航 */}
         <Layout className="main-layout-right">
           {/* 面包屑 */}
-          <Breadcrumb>
-            {globalStore.breads.map((name, i) => (
-              <Breadcrumb.Item key={i}>{name}</Breadcrumb.Item>
-            ))}
-          </Breadcrumb>
+          {globalStore.showBread && (
+            <Breadcrumb>
+              {globalStore.breads.map((name, i) => (
+                <Breadcrumb.Item key={i}>{name}</Breadcrumb.Item>
+              ))}
+            </Breadcrumb>
+          )}
           <Layout.Content className="main-layout-content">
             {children}
             {/* <MainFooter></MainFooter> */}
