@@ -2,8 +2,9 @@
 import React, { useContext, useState } from 'react'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
-import { Table, Row, Col, Input, Select, Button, Pagination } from 'antd'
+import { Table, Row, Col, Input, Select, Button, Modal, Pagination } from 'antd'
 import { PlusSquareFilled, SearchOutlined } from '@ant-design/icons'
+import { renderComponent } from '@/utils'
 import Store from './basecStore'
 interface columns {
   title: string
@@ -16,7 +17,8 @@ const initModals = [
     visible: false,
     data: null,
     key: 'contract',
-    componentPath: 'Add/index.tsx',
+    componentPath:
+      'pages/Info/ServiceObject/ManageShop/ObjectShop/Contract/Modals/Contract.tsx',
   },
   {
     title: '企业信息',
@@ -43,6 +45,9 @@ const initModals = [
 
 const Basic = (_props) => {
   const [modals, setModal] = useState(initModals)
+  const [visible, setVisible] = useState(false)
+  const [modalData, setModalData] = useState({})
+  const [curentModal, setCurentModal] = useState({})
 
   const store = useContext(Store)
   const onSelectChange = (_selectedRowKeys, selectedRows) => {
@@ -121,17 +126,16 @@ const Basic = (_props) => {
   const remove = () => {}
   //显示弹窗
   const openModal = (data, modalKey) => {
-    const modal = modals.find((n) => n.key == modalKey)
-    modal.data = data
-    modal.visible = true
-    setModal([...modals, modal])
+    setVisible(true)
+    setModalData({
+      data,
+      key: modalKey,
+    })
+    setCurentModal(modals.find((n) => n.key === modalKey))
   }
   //弹窗关闭
   const modalClose = (modalKey) => {
-    const modal = modals.find((n) => n.key == modalKey)
-    modal.data = null
-    modal.visible = false
-    setModal([...modals, modal])
+    setVisible(false)
   }
   return (
     <>
@@ -170,49 +174,17 @@ const Basic = (_props) => {
           selectedRowKeys: store.selectedRowKeys,
           onChange: onSelectChange,
         }}
-        columns={
-          toJS(store.columns).concat([
-            {
-              title: '合同信息',
-              render: (item) => (
-                <a className="link" onClick={() => openModal(item, 'contract')}>
-                  合同信息
-                </a>
-              ),
-              width: '40',
-            },
-            {
-              title: '企业信息',
-              render: (item) => (
-                <a
-                  className="link"
-                  onClick={() => openModal(item, 'enterprise')}
-                >
-                  企业信息
-                </a>
-              ),
-              width: '40',
-            },
-            {
-              title: '照片列表',
-              render: (item) => (
-                <a className="link" onClick={() => openModal(item, 'photo')}>
-                  查看
-                </a>
-              ),
-              width: '40',
-            },
-            {
-              title: '操作',
-              render: (item) => (
-                <a className="link" onClick={() => openModal(item, 'edit')}>
-                  编辑
-                </a>
-              ),
-              width: '40',
-            },
-          ]) as columns[]
-        }
+        columns={toJS(store.columns).concat(
+          modals.map((modal) => ({
+            title: modal.title,
+            render: (item) => (
+              <a className="link" onClick={() => openModal(item, modal.key)}>
+                {modal.title}
+              </a>
+            ),
+            width: '40',
+          }))
+        )}
         pagination={false}
         dataSource={toJS(store.tableData)}
         onChange={tableChange}
@@ -239,32 +211,19 @@ const Basic = (_props) => {
           />
         </Col>
       </Row>
-      {/* 新增、编辑弹窗 */}
-      {modals.map((block) =>
-        renderComponent(block, {
-          close: () => modalClose(block.key),
-        })
+      {/* 弹窗 */}
+      {curentModal.title && (
+        <Modal
+          width={1000}
+          title={curentModal.title}
+          visible={visible}
+          onCancel={modalClose}
+          footer={null}
+        >
+          {renderComponent(curentModal, modalData.data)}
+        </Modal>
       )}
     </>
   )
-}
-function renderComponent(
-  { title, data, key, visible, componentPath },
-  extraProps = {}
-) {
-  try {
-    const Component = require(`../${componentPath}`).default
-    return (
-      <Component
-        {...extraProps}
-        data={data}
-        visible={visible}
-        blockTitle={title}
-        key={key}
-      />
-    )
-  } catch (e) {
-    return null
-  }
 }
 export default observer(Basic)

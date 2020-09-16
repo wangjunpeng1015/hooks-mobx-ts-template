@@ -69,7 +69,7 @@ const config = [
                     ),
                   },
                   {
-                    path: '/info/service-object/manage-shop-basic', //新增、编辑
+                    path: '/info/service-object/manage-shop-basic/:step', //新增、编辑
                     bread: false,
                     hidden: true,
                     component: lazy(

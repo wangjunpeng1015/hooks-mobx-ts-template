@@ -10,6 +10,15 @@ module.exports = merge(commonConfig, {
   mode: 'development',
   target: 'web',
   devtool: 'cheap-module-eval-source-map',
+  output: {
+    // 输出文件的目标路径
+    path: path.resolve(__dirname, '../dist'),
+    // 输出的文件名
+    filename: '[name].[chunk:8].js',
+    chunkFilename: 'chunk/[name].[chunkhash:8].js',
+    // 输出解析文件的目录。静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径
+    publicPath: '/',
+  },
   devServer: {
     hot: true,
     host: '0.0.0.0',
@@ -17,6 +26,7 @@ module.exports = merge(commonConfig, {
     port: 3000,
     open: true,
     hotOnly: true,
+    disableHostCheck: true,
     // 开发模式下写/就行啦
     // 接口代理转发
     proxy: {

@@ -31,12 +31,12 @@ const renderRoutes = (routes: Array<any>) => {
             exact={route.exact}
             strict={route.strict}
             bread={route.bread}
-            render={() => {
+            render={(props: any) => {
               const renderChildRoutes = renderRoutes(route.childRoutes)
               if (route.component) {
                 return (
                   <Suspense fallback={<LoadingPage />}>
-                    <route.component route={route}>
+                    <route.component route={route} {...props}>
                       {renderChildRoutes}
                     </route.component>
                   </Suspense>

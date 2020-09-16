@@ -45,7 +45,19 @@ a.link {
     text-decoration: underline;
   }
 }
-
+.title-header {
+  color: #3c464f;
+  font-size: 14px;
+  margin: 14px 0 15px;
+  &::before {
+    content: '';
+    display: inline-block;
+    margin-right: 10px;
+    height: 14px;
+    width: 4px;
+    background-color: #00bd7a;
+  }
+}
 .table {
   margin: 32px 0 30px;
 }

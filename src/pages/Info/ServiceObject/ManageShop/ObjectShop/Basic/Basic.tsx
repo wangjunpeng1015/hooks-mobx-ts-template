@@ -1,9 +1,18 @@
-// @ts-nocheck
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
-import { Table, Modal, Row, Col, Input, Select, Button, Pagination } from 'antd'
+import {
+  Table,
+  Modal,
+  Form,
+  Row,
+  Col,
+  Input,
+  Select,
+  Button,
+  Pagination,
+} from 'antd'
 import {
   PlusSquareFilled,
   SearchOutlined,
@@ -16,41 +25,16 @@ interface columns {
   dataIndex?: string
   [_: string]: any
 }
-const initModals = [
-  {
-    title: '合同信息',
-    visible: false,
-    data: null,
-    key: 'contract',
-    componentPath: '/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add',
-  },
-  {
-    title: '企业信息',
-    visible: false,
-    data: null,
-    key: 'enterprise',
-    componentPath: '/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add',
-  },
-  {
-    title: '照片列表',
-    visible: false,
-    data: null,
-    key: 'photo',
-    componentPath: '/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add',
-  },
-  {
-    title: '操作',
-    visible: false,
-    data: null,
-    key: 'edit',
-    componentPath: '/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add',
-  },
-]
-
+const style = {
+  marginRight: 20,
+  marginBottom: 0,
+  display: 'inline-block',
+  width: 200,
+  verticalAlign: 'middle',
+}
 const Basic = (_props) => {
+  const [form] = Form.useForm()
   const history = useHistory()
-  const [modals, setModal] = useState(initModals)
-
   const store = useContext(Store)
   const onSelectChange = (_selectedRowKeys, selectedRows) => {
     store.selectedRowKeys = selectedRows.map((n: any) => n.key)
@@ -63,23 +47,13 @@ const Basic = (_props) => {
       const key = item.key
       if (item.type === 'select') {
         return (
-          <Input.Group
-            key={index}
-            compact
-            style={{
-              marginRight: 30,
-              display: 'inline-block',
-              width: 200,
-              verticalAlign: 'middle',
-            }}
-          >
-            {/* <span style={{ lineHeight: "30px" }}>{item.name}：</span> */}
+          <Form.Item style={style} key={index} name={key} label={item.name}>
             <Select
               allowClear
               placeholder={item.name}
               style={{ minWidth: '160px' }}
               value={key}
-              onChange={(e) => search({ key: e.join(',') }, { key: e })}
+              onChange={(e) => search()}
             >
               {item.options.map((house) => (
                 <Select.Option key={house} value={house}>
@@ -87,28 +61,17 @@ const Basic = (_props) => {
                 </Select.Option>
               ))}
             </Select>
-          </Input.Group>
+          </Form.Item>
         )
       } else if (item.type === 'input') {
         return (
-          <Input.Group
-            key={index}
-            compact
-            style={{
-              marginRight: 30,
-              display: 'inline-block',
-              width: 200,
-              verticalAlign: 'middle',
-            }}
-          >
-            {/* <span style={{ lineHeight: "30px" }}>{item.name}：</span> */}
+          <Form.Item key={index} label={item.name} name={key} style={style}>
             <Input
-              style={{ width: 160 }}
-              placeholder={item.name}
               onPressEnter={search}
-              suffix={<SearchOutlined style={{ cursor: 'point' }} />}
+              disabled={item.disabled}
+              placeholder={item.name}
             />
-          </Input.Group>
+          </Form.Item>
         )
       }
     })
@@ -140,27 +103,31 @@ const Basic = (_props) => {
   }
   //跳转添加
   const openModal = () => {
-    history.push('/info/service-object/manage-shop-basic?step=0', {
-      fromDashboard: true,
+    history.push({
+      pathname: '/info/service-object/manage-shop-basic/0',
+      datas: {
+        aa: true,
+      },
     })
-    // history.push(`/info/service-object/manage-shop-basic?step=0`)
   }
-
+  const onFinish = () => {}
   return (
     <>
       {/*  搜索条件  */}
       <Row justify="center" align="top">
         <Col span={22}>
-          <Row>{mapSearchList(store.searchListDom.slice(0, 6))}</Row>
-          <Row style={{ marginTop: '12px' }}>
-            {mapSearchList(store.searchListDom.slice(6, 12))}
-          </Row>
-          <Row style={{ marginTop: '12px' }}>
-            {mapSearchList(store.searchListDom.slice(12, 18))}
-          </Row>
-          <Row style={{ marginTop: '12px' }}>
-            {mapSearchList(store.searchListDom.slice(18, 20))}
-          </Row>
+          <Form layout="vertical" form={form} onFinish={onFinish}>
+            <Row>{mapSearchList(store.searchListDom.slice(0, 6))}</Row>
+            <Row style={{ marginTop: '12px' }}>
+              {mapSearchList(store.searchListDom.slice(6, 12))}
+            </Row>
+            <Row style={{ marginTop: '12px' }}>
+              {mapSearchList(store.searchListDom.slice(12, 18))}
+            </Row>
+            <Row style={{ marginTop: '12px' }}>
+              {mapSearchList(store.searchListDom.slice(18, 20))}
+            </Row>
+          </Form>
         </Col>
         <Col span={2}>
           <Row>
@@ -222,12 +189,6 @@ const Basic = (_props) => {
           />
         </Col>
       </Row>
-      {/* 新增、编辑弹窗 */}
-      {modals.map((block) =>
-        renderComponent(block, {
-          close: () => modalClose(block.key),
-        })
-      )}
     </>
   )
 }

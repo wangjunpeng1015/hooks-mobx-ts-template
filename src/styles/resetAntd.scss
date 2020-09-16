@@ -32,6 +32,9 @@ html {
     .ant-menu-item-selected {
     background-color: $color-secondary-active;
   }
+  .anticon {
+    cursor: pointer;
+  }
   .ant-tabs-nav {
     border-bottom: 1px solid #f4f4f4;
   }

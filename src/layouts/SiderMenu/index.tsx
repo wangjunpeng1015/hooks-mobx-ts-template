@@ -54,7 +54,13 @@ const SiderMenu = ({ routes }) => {
   const breadcrumb = (pages, path, isLast) => {
     if (Array.isArray(pages) && typeof path === 'string') {
       const page = pages.find((n) => {
-        const sortPath = n.path.split('/').pop()
+        //如果有参数去掉
+        let url = n.path
+        if (url.includes(':')) {
+          url = url.split(':')[0]
+          url = url.substring(0, url.length - 1)
+        }
+        const sortPath = url.split('/').pop()
         return sortPath === path
       })
       if (page) {

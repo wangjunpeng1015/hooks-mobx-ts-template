@@ -30,7 +30,6 @@ module.exports = merge(commonConfig, {
       chunkFilename: 'chunk/[id].[contenthash:8].css',
     }),
     new webpack.HashedModuleIdsPlugin(),
-     plugins: [
     new webpack.DefinePlugin({
       // 定义环境和变量
       'process.env': {
@@ -38,7 +37,6 @@ module.exports = merge(commonConfig, {
         ...env,
       },
     }),
-  ],
   ],
   optimization: {
     minimizer: [
