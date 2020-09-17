@@ -14,6 +14,7 @@ interface columns {
 const initModals = [
   {
     title: '合同信息',
+    name: '查看合同',
     visible: false,
     data: null,
     key: 'contract',
@@ -22,20 +23,25 @@ const initModals = [
   },
   {
     title: '企业信息',
+    name: '查看企业',
     visible: false,
     data: null,
     key: 'enterprise',
-    componentPath: 'Add/index.tsx',
+    componentPath:
+      'pages/Info/ServiceObject/ManageShop/ObjectShop/Contract/Modals/Enterprise.tsx',
   },
   {
     title: '照片列表',
+    name: '查看',
     visible: false,
     data: null,
     key: 'photo',
-    componentPath: 'Add/index.tsx',
+    componentPath:
+      'pages/Info/ServiceObject/ManageShop/ObjectShop/Contract/Modals/PictrueList.tsx',
   },
   {
     title: '操作',
+    name: '编辑',
     visible: false,
     data: null,
     key: 'edit',
@@ -179,7 +185,7 @@ const Basic = (_props) => {
             title: modal.title,
             render: (item) => (
               <a className="link" onClick={() => openModal(item, modal.key)}>
-                {modal.title}
+                {modal.name}
               </a>
             ),
             width: '40',
@@ -214,7 +220,7 @@ const Basic = (_props) => {
       {/* 弹窗 */}
       {curentModal.title && (
         <Modal
-          width={1000}
+          width={1200}
           title={curentModal.title}
           visible={visible}
           onCancel={modalClose}

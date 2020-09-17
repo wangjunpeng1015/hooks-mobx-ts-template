@@ -13,14 +13,9 @@ import {
   Button,
   Pagination,
 } from 'antd'
-import {
-  PlusSquareFilled,
-  SearchOutlined,
-  ExclamationCircleOutlined,
-} from '@ant-design/icons'
-import { renderComponent } from '@/utils'
+import { PlusSquareFilled, ExclamationCircleOutlined } from '@ant-design/icons'
 import { getFormItem } from '@/utils/element'
-import Store from './basecStore'
+import Store from './Store'
 interface columns {
   title: string
   dataIndex?: string
@@ -90,12 +85,6 @@ const Basic = (_props) => {
             <Row>{getFormItem(store.searchListDom.slice(0, 6), style)}</Row>
             <Row style={{ marginTop: '12px' }}>
               {getFormItem(store.searchListDom.slice(6, 12), style)}
-            </Row>
-            <Row style={{ marginTop: '12px' }}>
-              {getFormItem(store.searchListDom.slice(12, 18), style)}
-            </Row>
-            <Row style={{ marginTop: '12px' }}>
-              {getFormItem(store.searchListDom.slice(18, 20), style)}
             </Row>
           </Form>
         </Col>

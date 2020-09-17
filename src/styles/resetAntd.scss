@@ -35,6 +35,13 @@ html {
   .anticon {
     cursor: pointer;
   }
+  .underline {
+    border-width: 0 0 1px 0;
+    &:focus {
+      box-shadow: none;
+      border-right-width: 0 !important;
+    }
+  }
   .ant-tabs-nav {
     border-bottom: 1px solid #f4f4f4;
   }

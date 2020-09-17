@@ -8,7 +8,7 @@ const srcDir = path.join(__dirname, '../src')
 module.exports = {
   mode: 'development',
   // 入口 这里应用程序开始执行
-  entry: path.resolve(__dirname, `${srcDir}/index.tsx`),
+  entry: [path.resolve(__dirname, `${srcDir}/index.tsx`)],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     modules: [path.resolve(__dirname, './src.v2'), 'node_modules'],

@@ -39,25 +39,74 @@ class HomeStore {
 
   @observable columns = [
     {
-      title: '居委',
+      title: '地址ID',
       dataIndex: 'name',
     },
     {
-      title: '所属小区',
+      title: '地址',
       dataIndex: 'chinese',
       sorter: {
         multiple: 1,
       },
     },
     {
-      title: 'Math Score',
+      title: '路段',
       dataIndex: 'math',
       sorter: {
         multiple: 1,
       },
     },
     {
-      title: 'English Score',
+      title: '门牌号',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '小门牌号',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '门牌号属性',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '方位属性',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '所属小区',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '所属街镇',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '所属居委',
+      dataIndex: 'english',
+      sorter: {
+        multiple: 1,
+      },
+    },
+    {
+      title: '物业公司',
       dataIndex: 'english',
       sorter: {
         multiple: 1,
@@ -71,81 +120,72 @@ class HomeStore {
 
   @observable searchListDom = [
     {
-      name: '商铺编号',
-      type: 'select',
+      name: '地址',
+      type: 'input',
       options: [],
-      key: '',
+      key: 'aa',
     },
     {
-      name: '名称',
+      name: '路段',
       type: 'input',
-      key: '',
+      key: 'bb',
     },
     {
       name: '地址',
       type: 'input',
-      key: '',
+      key: 'cc',
     },
     {
-      name: '联系人',
+      name: '门牌号',
       type: 'input',
-      key: '',
+      key: 'dd',
     },
     {
-      name: '电话',
+      name: '小门牌号',
       type: 'input',
-      key: '',
+      key: 'ee',
     },
     {
-      name: '所属企业',
+      name: '地址ID',
+      type: 'input',
+      options: [],
+      key: 'ff',
+    },
+    {
+      name: '门牌号属性',
       type: 'select',
       options: [],
       key: '',
     },
     {
-      name: '备注',
-      type: 'input',
-      key: '',
-    },
-    {
-      name: '门牌号属性',
-      type: 'input',
-      key: '',
-    },
-    {
       name: '方位属性',
-      type: 'input',
-      key: '',
-    },
-    {
-      name: '所属街镇',
-      type: 'input',
-      key: '',
-    },
-    {
-      name: '所属居委',
-      type: 'input',
-      key: '',
+      type: 'select',
+      options: [],
+      key: 'zz',
     },
     {
       name: '所属小区',
-      type: 'input',
-      key: '',
+      type: 'select',
+      options: [],
+      key: 'ss',
+    },
+    {
+      name: '所属街镇',
+      type: 'select',
+      options: [],
+      key: 'gg',
+    },
+    {
+      name: '所属居委',
+      type: 'select',
+      options: [],
+      key: 'hh',
     },
     {
       name: '物业公司',
-      type: 'input',
-      key: '',
-    },
-    {
-      name: '经营属性',
-      type: 'input',
-      key: '',
-    },
-    {
-      name: '是否连锁店铺',
-      type: 'input',
-      key: '',
+      type: 'select',
+      options: [],
+      key: 'uu',
     },
   ]
 

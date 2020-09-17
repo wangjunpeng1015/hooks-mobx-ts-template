@@ -9,7 +9,11 @@ const ObjectShop = () => {
   const callback = () => {}
   return (
     <>
-      <Tabs defaultActiveKey="basic" onChange={() => callback}>
+      <Tabs
+        style={{ marginTop: '-20px' }}
+        defaultActiveKey="basic"
+        onChange={() => callback}
+      >
         <TabPane tab="基础信息" key="basic">
           <Basic />
         </TabPane>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Table,
   Row,
@@ -7,6 +7,7 @@ import {
   Input,
   Select,
   Button,
+  Space,
   Modal,
   Pagination,
   Form,
@@ -17,9 +18,11 @@ import {
   ContainerOutlined,
 } from '@ant-design/icons'
 import BillModal from './billInfo'
+const { RangePicker } = DatePicker
+
 const style = {
   marginRight: 20,
-  marginBootom: 0,
+  marginBottom: 0,
   display: 'inline-block',
   width: 160,
   verticalAlign: 'middle',
@@ -27,66 +30,86 @@ const style = {
 //搜索条件
 const columnsInit = [
   {
-    name: '合同生成日期',
-    type: 'picker',
-    options: [],
+    name: '合同编号',
+    type: 'input',
     key: 'qq',
   },
   {
-    name: '账单生成日期',
-    type: 'picker',
-    options: [],
+    name: '联系人',
+    type: 'inpu',
     key: 'ww',
   },
   {
-    name: '账单编号',
-    type: 'input',
+    name: '金额',
+    type: 'inpu',
+    key: 'ww',
+  },
+  {
+    name: '收运单位',
+    type: 'select',
     options: [],
     key: 'rr',
   },
   {
-    name: '账单计费开始日期',
-    type: 'picker',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '账单计费结束日期',
-    type: 'picker',
-    disabled: false,
-    options: [],
-    key: 'aa',
-  },
-  {
-    name: '账单状态',
-    type: 'select',
-    disabled: false,
+    name: '备注',
+    type: 'inpu',
     options: [],
     key: 'bb',
   },
+  {
+    name: '签约人员',
+    type: 'select',
+    options: [],
+    key: 'bb',
+  },
+  {
+    name: '',
+    type: 'rangePicker',
+    key: 'bb',
+  },
+  {
+    name: '',
+    type: 'rangeInput',
+    key: 'bb',
+  },
 ]
-const { RangePicker } = DatePicker
 
+//表格表头
 const tableColumns = [
   {
-    title: '姓名',
+    title: '合同生成日期',
     dataIndex: 'name',
     key: 'name',
   },
   {
-    title: '年龄',
+    title: '合同编号',
     dataIndex: 'age',
     key: 'age',
   },
   {
-    title: '住址',
+    title: '合同开始日期',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: '收运单位',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: '收运单位备注',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: '干垃圾收运方式',
     dataIndex: 'address',
     key: 'address',
   },
 ]
 const ContractInfo = (_props) => {
   const [form] = Form.useForm()
+  const [visible, setVisible] = useState(false)
   const [columns, setColumns] = useState(columnsInit)
   const [loading, setLoading] = useState(false)
   const [tableData, setTableData] = useState([])
@@ -108,74 +131,13 @@ const ContractInfo = (_props) => {
     })
     search()
   }
-  const mapSearchList = (list) =>
-    list.map((item, index) => {
-      const key = item.key
-      if (item.type === 'select') {
-        return (
-          <Input.Group
-            key={index}
-            compact
-            style={{
-              marginRight: 30,
-              display: 'inline-block',
-              width: 200,
-              verticalAlign: 'middle',
-            }}
-          >
-            {/* <span style={{ lineHeight: "30px" }}>{item.name}：</span> */}
-            <Select
-              allowClear
-              placeholder={item.name}
-              style={{ minWidth: '160px' }}
-              value={key}
-              onChange={(e) => search({ key: e.join(',') }, { key: e })}
-            >
-              {item.options.map((house) => (
-                <Select.Option key={house} value={house}>
-                  {house}
-                </Select.Option>
-              ))}
-            </Select>
-          </Input.Group>
-        )
-      } else if (item.type === 'input') {
-        return (
-          <Input.Group
-            key={index}
-            compact
-            style={{
-              marginRight: 30,
-              display: 'inline-block',
-              width: 200,
-              verticalAlign: 'middle',
-            }}
-          >
-            {/* <span style={{ lineHeight: "30px" }}>{item.name}：</span> */}
-            <Input
-              style={{ width: 160 }}
-              placeholder={item.name}
-              onPressEnter={search}
-              suffix={<SearchOutlined style={{ cursor: 'point' }} />}
-            />
-          </Input.Group>
-        )
-      } else if (item.type === 'rangePicker') {
-        return <RangePicker />
-      }
-    })
+
   const mapList = (list) =>
     list.map((item, index: number) => {
       const key = item.key
       if (item.type === 'select') {
         return (
-          <Form.Item
-            style={style}
-            key={index}
-            name={key}
-            label={item.name}
-            // rules={[{ required: true }]}
-          >
+          <Form.Item style={style} key={index} name={key}>
             <Select
               allowClear
               placeholder={item.name}
@@ -193,22 +155,51 @@ const ContractInfo = (_props) => {
         )
       } else if (item.type === 'input') {
         return (
-          <Form.Item key={index} label={item.name} name={key} style={style}>
-            <Input disabled={item.disabled} placeholder={item.name} />
+          <Form.Item key={index} name={key} style={style}>
+            <Input
+              onPressEnter={search}
+              suffix={<SearchOutlined style={{ cursor: 'point' }} />}
+              disabled={item.disabled}
+              placeholder={item.name}
+            />
           </Form.Item>
         )
-      } else if (item.type === 'picker') {
+      } else if (item.type === 'rangePicker') {
         return (
-          <Form.Item key={index} label={item.name} name={key} style={style}>
-            <DatePicker disabled={item.disabled} style={style} />
+          <Form.Item key={index} name={key} style={{ ...style, width: 280 }}>
+            <RangePicker disabled={item.disabled} />
           </Form.Item>
+        )
+      } else if (item.type === 'rangeInput') {
+        return (
+          <>
+            <Form.Item
+              key={index}
+              name={key}
+              style={{ ...style, width: 80, marginRight: 0 }}
+            >
+              <Input
+                className="underline"
+                style={{ width: 80 }}
+                placeholder={item.name}
+              />
+            </Form.Item>
+            <Form.Item style={{ display: 'inline-block' }}>至</Form.Item>
+            <Form.Item key={index} name={key} style={{ ...style, width: 80 }}>
+              <Input
+                className="underline"
+                style={{ width: 80 }}
+                placeholder={item.name}
+              />
+            </Form.Item>
+          </>
         )
       }
     })
-  //删除
-  const remove = () => {}
   //显示弹窗
-  const openModal = (data, modalKey) => {}
+  const openModal = () => {
+    setVisible(true)
+  }
   //弹窗关闭
   const modalClose = (modalKey) => {}
   //提交表单
@@ -217,37 +208,48 @@ const ContractInfo = (_props) => {
     <>
       {/*  搜索条件  */}
       <Row justify="center" align="top">
-        <Col span={22}>
+        <Col span={21}>
           <Form layout="vertical" form={form} onFinish={onFinish}>
             {mapList(columns)}
+            <Form.Item style={style}>
+              <Button type="primary" onClick={() => search()}>
+                搜索
+              </Button>
+            </Form.Item>
           </Form>
         </Col>
-        <Col span={2}>
-          <Row>
+        <Col flex="auto">
+          <Space direction="vertical">
             <Button
               type="primary"
               style={{ float: 'right' }}
-              onClick={() => openModal(null, 'edit')}
+              onClick={() => openModal()}
             >
               <ContainerOutlined />
               查看账单
             </Button>
-            <Button
-              type="primary"
-              style={{ float: 'right' }}
-              onClick={() => openModal(null, 'edit')}
-            >
+            <Button type="primary" style={{ float: 'right' }}>
               <PlusSquareFilled />
               添加
             </Button>
-          </Row>
+          </Space>
         </Col>
       </Row>
       {/* 表格 */}
       <Table
         loading={loading}
         className="table"
-        columns={tableColumns}
+        columns={tableColumns.concat([
+          {
+            title: '服务信息',
+            render: (item) => (
+              <a className="link" onClick={() => openModal(item)}>
+                服务信息
+              </a>
+            ),
+            width: '40',
+          },
+        ])}
         pagination={false}
         dataSource={tableData}
       />
@@ -263,8 +265,16 @@ const ContractInfo = (_props) => {
           onChange={(num) => currentChange(num)}
         />
       </Row>
-      {/* 弹窗 */}
-      {/* <BillModal visible={} id={} /> */}
+      {/* 账单信息弹窗 */}
+      <Modal
+        title="合同信息-账单信息"
+        visible={visible}
+        width={1100}
+        footer={null}
+        onCancel={() => setVisible(false)}
+      >
+        <BillModal props={_props} />
+      </Modal>
     </>
   )
 }

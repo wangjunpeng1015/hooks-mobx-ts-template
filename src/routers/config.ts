@@ -70,12 +70,23 @@ const config = [
                   },
                   {
                     path: '/info/service-object/manage-shop-basic/:step', //新增、编辑
-                    bread: false,
-                    hidden: true,
+                    bread: false, //面包屑
+                    hidden: true, //不在菜单栏显示
                     component: lazy(
                       () =>
                         import(
                           '@/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add'
+                        )
+                    ),
+                  },
+                  {
+                    path: '/info/service-object/manage-address',
+                    name: '地址库管理',
+                    icon: 'MessageOutlined',
+                    component: lazy(
+                      () =>
+                        import(
+                          '@/pages/Info/ServiceObject/ManageShop/ManageAddress'
                         )
                     ),
                   },

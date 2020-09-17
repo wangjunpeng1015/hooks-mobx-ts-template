@@ -24,9 +24,11 @@ module.exports = merge(commonConfig, {
     host: '0.0.0.0',
     inline: true,
     port: 3000,
+    compress: true, //开启gzip
     open: true,
     hotOnly: true,
     disableHostCheck: true,
+    publicPath: '/',
     // 开发模式下写/就行啦
     // 接口代理转发
     proxy: {
@@ -47,4 +49,7 @@ module.exports = merge(commonConfig, {
       },
     }),
   ],
+  optimization: {
+    namedModules: true,
+  },
 })
