@@ -8,33 +8,28 @@ const { TabPane } = Tabs
 const tabs = [
   {
     title: '基础信息',
-    componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add/Basic.tsx',
+    componentPath: 'pages/Info/ServiceObject/ObjectShop/Basic/Add/Basic.tsx',
   },
   {
     title: '企业信息',
     componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add/Enterprise.tsx',
+      'pages/Info/ServiceObject/ObjectShop/Basic/Add/Enterprise.tsx',
   },
   {
     title: '店铺图片',
-    componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add/Picture.tsx',
+    componentPath: 'pages/Info/ServiceObject/ObjectShop/Basic/Add/Picture.tsx',
   },
   {
     title: '合同信息',
-    componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add/Contract.tsx',
+    componentPath: 'pages/Info/ServiceObject/ObjectShop/Basic/Add/Contract.tsx',
   },
   {
     title: '账单信息',
-    componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add/Bill.tsx',
+    componentPath: 'pages/Info/ServiceObject/ObjectShop/Basic/Add/Bill.tsx',
   },
   {
     title: '缴费信息',
-    componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add/Payment.tsx',
+    componentPath: 'pages/Info/ServiceObject/ObjectShop/Basic/Add/Payment.tsx',
   },
 ]
 

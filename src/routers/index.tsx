@@ -52,11 +52,6 @@ const renderRoutes = (routes: Array<any>) => {
 }
 
 const AppRouter = () => {
-  // console.log(renderRoutes(config));
-  // return <Router key={1}
-  //   path={'/welcome'}
-  //   exact={true}
-  // ></Router>
   return <Router>{renderRoutes(config)}</Router>
 }
 

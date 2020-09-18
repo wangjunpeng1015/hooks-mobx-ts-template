@@ -94,8 +94,14 @@ module.exports = {
           },
           {
             loader: 'sass-loader', // 将 Sass 编译成 CSS
+          },
+          {
+            loader: 'sass-resources-loader',
             options: {
-              additionalData: `@import "@/styles/variables.scss";`,
+              resources: [
+                // 这里按照你的文件路径填写
+                path.resolve(__dirname, `${srcDir}/styles/variables.scss`),
+              ],
             },
           },
         ],

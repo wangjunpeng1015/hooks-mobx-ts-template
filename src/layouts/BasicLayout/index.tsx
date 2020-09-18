@@ -27,7 +27,10 @@ const BasicLayout = ({ route, children }) => {
               ))}
             </Breadcrumb>
           )}
-          <Layout.Content className="main-layout-content">
+          <Layout.Content
+            className="main-layout-content"
+            style={{ paddingTop: globalStore.showBread ? '30px' : '0' }}
+          >
             {children}
             {/* <MainFooter></MainFooter> */}
           </Layout.Content>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { observer } from 'mobx-react'
+import { getFormItem } from '@/utils/element'
 import { Tabs, Form, Input, Button, Select } from 'antd'
 interface Column {
   key: string
@@ -134,56 +135,7 @@ const columns: Column[] = [
     key: 'address',
   },
 ]
-const mapList = (list: Column[]) =>
-  list.map((item, index: number) => {
-    const key = item.key
-    if (item.type === 'select') {
-      return (
-        <Form.Item
-          style={{
-            marginRight: 30,
-            display: 'inline-block',
-            width: 300,
-            verticalAlign: 'middle',
-          }}
-          key={index}
-          name={key}
-          label={item.name}
-          // rules={[{ required: true }]}
-        >
-          <Select
-            allowClear
-            placeholder={item.name}
-            style={{ minWidth: '160px' }}
-            disabled={item.disabled}
-            key={index}
-          >
-            {item.options.map((house) => (
-              <Select.Option key={house} value={house}>
-                {house}
-              </Select.Option>
-            ))}
-          </Select>
-        </Form.Item>
-      )
-    } else if (item.type === 'input') {
-      return (
-        <Form.Item
-          key={index}
-          label={item.name}
-          name={key}
-          style={{
-            marginRight: 30,
-            display: 'inline-block',
-            width: 300,
-            verticalAlign: 'middle',
-          }}
-        >
-          <Input disabled={item.disabled} placeholder={item.name} />
-        </Form.Item>
-      )
-    }
-  })
+
 const ManageShopBasicInfo = (props) => {
   const [form] = Form.useForm()
   //表单提交
@@ -206,7 +158,7 @@ const ManageShopBasicInfo = (props) => {
         onValuesChange={onFormLayoutChange}
         onFinish={onFinish}
       >
-        {mapList(columns)}
+        {getFormItem(columns)}
         <Form.Item>
           <Button type="primary" htmlType="submit">
             保存

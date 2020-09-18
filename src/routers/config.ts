@@ -62,10 +62,7 @@ const config = [
                     name: '商铺管理',
                     icon: 'MessageOutlined',
                     component: lazy(
-                      () =>
-                        import(
-                          '@/pages/Info/ServiceObject/ManageShop/ObjectShop'
-                        )
+                      () => import('@/pages/Info/ServiceObject/ObjectShop')
                     ),
                   },
                   {
@@ -75,7 +72,7 @@ const config = [
                     component: lazy(
                       () =>
                         import(
-                          '@/pages/Info/ServiceObject/ManageShop/ObjectShop/Basic/Add'
+                          '@/pages/Info/ServiceObject/ObjectShop/Basic/Add'
                         )
                     ),
                   },
@@ -84,10 +81,7 @@ const config = [
                     name: '地址库管理',
                     icon: 'MessageOutlined',
                     component: lazy(
-                      () =>
-                        import(
-                          '@/pages/Info/ServiceObject/ManageShop/ManageAddress'
-                        )
+                      () => import('@/pages/Info/ServiceObject/ManageAddress')
                     ),
                   },
                 ],
@@ -95,77 +89,88 @@ const config = [
             ],
           },
           {
-            path: '/welcome',
-            name: '欢迎页',
+            path: '/enterprise',
+            name: '企业综合管理',
             icon: 'MessageOutlined',
             childRoutes: [
               {
-                path: '/welcome/index',
-                name: '欢迎页',
+                path: '/enterprise/enterprise-charge',
+                name: '收费管理',
                 icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/Home')),
+                childRoutes: [
+                  {
+                    path: '/enterprise/enterprise-charge/contract',
+                    name: '合同管理',
+                    icon: 'MessageOutlined',
+                    component: lazy(
+                      () =>
+                        import('@/pages/Enterprise/ChargeManage/ContractManage')
+                    ),
+                  },
+                  {
+                    path: '/enterprise/enterprise-charge/bill',
+                    name: '账单管理',
+                    icon: 'MessageOutlined',
+                    component: lazy(
+                      () => import('@/pages/Enterprise/ChargeManage/BillManage')
+                    ),
+                  },
+                  {
+                    path: '/enterprise/enterprise-charge/payment',
+                    name: '缴费管理',
+                    icon: 'MessageOutlined',
+                    component: lazy(
+                      () =>
+                        import('@/pages/Enterprise/ChargeManage/PaymentManage')
+                    ),
+                  },
+                ],
               },
             ],
           },
+          // {
+          //   path: '/welcome',
+          //   name: '欢迎页',
+          //   icon: 'MessageOutlined',
+          //   childRoutes: [
+          //     {
+          //       path: '/welcome/index',
+          //       name: '欢迎页',
+          //       icon: 'MessageOutlined',
+          //       component: lazy(() => import('@/pages/Home')),
+          //     },
+          //   ],
+          // },
+          // {
+          //   path: '/home',
+          //   name: 'home主页',
+          //   icon: 'MessageOutlined',
+          //   component: lazy(() => import('@/pages/Home')),
+          // },
+          // {
+          //   path: '/system',
+          //   name: '系统管理',
+          //   icon: 'MessageOutlined',
+          //   childRoutes: [
+          //     {
+          //       path: '/system/user',
+          //       name: '用户配置',
+          //       icon: 'MessageOutlined',
+          //       component: lazy(() => import('@/pages/System/User')),
+          //     },
+          //     {
+          //       path: '/system/star',
+          //       name: '个人中心',
+          //       icon: 'MessageOutlined',
+          //       component: lazy(() => import('@/pages/System/Star')),
+          //     },
+          //   ],
+          // },
           {
-            path: '/home',
-            name: 'home主页',
-            icon: 'MessageOutlined',
-            component: lazy(() => import('@/pages/Home')),
+            path: '/',
+            exact: true,
+            redirect: '/info/service-object/manage-shop',
           },
-          {
-            path: '/formDemo',
-            name: '表单演示',
-            icon: 'MessageOutlined',
-            component: lazy(() => import('@/pages/FormDemo')),
-          },
-          {
-            path: '/system',
-            name: '系统管理',
-            icon: 'MessageOutlined',
-            childRoutes: [
-              {
-                path: '/system/user',
-                name: '用户配置',
-                icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/System/User')),
-              },
-              {
-                path: '/system/star',
-                name: '个人中心',
-                icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/System/Star')),
-              },
-            ],
-          },
-          {
-            path: '/exception',
-            name: '异常页',
-            // exact: true,
-            icon: 'MessageOutlined',
-            childRoutes: [
-              {
-                path: '/exception/403',
-                name: '403',
-                icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/Exception/403')),
-              },
-              {
-                path: '/exception/404',
-                name: '404',
-                exact: true,
-                icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/Exception/404')),
-              },
-              {
-                path: '/exception/500',
-                name: '500',
-                icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/Exception/500')),
-              },
-            ],
-          },
-          { path: '/', exact: true, redirect: '/welcome' },
           { path: '*', exact: true, redirect: '/exception/404' },
         ],
       },

@@ -18,7 +18,6 @@ import {
   SearchOutlined,
   ExclamationCircleOutlined,
 } from '@ant-design/icons'
-import { renderComponent } from '@/utils'
 import { getFormItem } from '@/utils/element'
 import Store from './basecStore'
 interface columns {
@@ -87,16 +86,7 @@ const Basic = (_props) => {
       <Row justify="center" align="top">
         <Col span={22}>
           <Form layout="vertical" form={form} onFinish={onFinish}>
-            <Row>{getFormItem(store.searchListDom.slice(0, 6), style)}</Row>
-            <Row style={{ marginTop: '12px' }}>
-              {getFormItem(store.searchListDom.slice(6, 12), style)}
-            </Row>
-            <Row style={{ marginTop: '12px' }}>
-              {getFormItem(store.searchListDom.slice(12, 18), style)}
-            </Row>
-            <Row style={{ marginTop: '12px' }}>
-              {getFormItem(store.searchListDom.slice(18, 20), style)}
-            </Row>
+            {getFormItem(store.searchListDom)}
           </Form>
         </Col>
         <Col span={2}>

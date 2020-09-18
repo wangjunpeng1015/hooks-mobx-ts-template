@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.config')
-
 const readEnv = require('./readEnv')
 const env = readEnv('../.env.development')
 
@@ -12,15 +11,15 @@ module.exports = merge(commonConfig, {
   devtool: 'cheap-module-eval-source-map',
   output: {
     // 输出文件的目标路径
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist-dev'),
     // 输出的文件名
     filename: '[name].[chunk:8].js',
-    chunkFilename: 'chunk/[name].[chunkhash:8].js',
-    // 输出解析文件的目录。静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径
     publicPath: '/',
   },
   devServer: {
+    contentBase: path.join(__dirname, '../dist-dev'),
     hot: true,
+    // overlay: true,//报错是否显示在窗口上
     host: '0.0.0.0',
     inline: true,
     port: 3000,

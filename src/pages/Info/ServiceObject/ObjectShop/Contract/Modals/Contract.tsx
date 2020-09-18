@@ -12,6 +12,7 @@ import {
   Pagination,
   Form,
 } from 'antd'
+import { getFormItem } from '@/utils/element'
 import {
   PlusSquareFilled,
   SearchOutlined,
@@ -132,70 +133,6 @@ const ContractInfo = (_props) => {
     search()
   }
 
-  const mapList = (list) =>
-    list.map((item, index: number) => {
-      const key = item.key
-      if (item.type === 'select') {
-        return (
-          <Form.Item style={style} key={index} name={key}>
-            <Select
-              allowClear
-              placeholder={item.name}
-              style={{ minWidth: '160px' }}
-              disabled={item.disabled}
-              key={index}
-            >
-              {item.options.map((house) => (
-                <Select.Option key={house} value={house}>
-                  {house}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        )
-      } else if (item.type === 'input') {
-        return (
-          <Form.Item key={index} name={key} style={style}>
-            <Input
-              onPressEnter={search}
-              suffix={<SearchOutlined style={{ cursor: 'point' }} />}
-              disabled={item.disabled}
-              placeholder={item.name}
-            />
-          </Form.Item>
-        )
-      } else if (item.type === 'rangePicker') {
-        return (
-          <Form.Item key={index} name={key} style={{ ...style, width: 280 }}>
-            <RangePicker disabled={item.disabled} />
-          </Form.Item>
-        )
-      } else if (item.type === 'rangeInput') {
-        return (
-          <>
-            <Form.Item
-              key={index}
-              name={key}
-              style={{ ...style, width: 80, marginRight: 0 }}
-            >
-              <Input
-                className="underline"
-                style={{ width: 80 }}
-                placeholder={item.name}
-              />
-            </Form.Item>
-            <Form.Item style={{ display: 'inline-block' }}>至</Form.Item>
-            <Form.Item key={index} name={key} style={{ ...style, width: 80 }}>
-              <Input
-                className="underline"
-                style={{ width: 80 }}
-                placeholder={item.name}
-              />
-            </Form.Item>
-          </>
-        )
-      }
-    })
   //显示弹窗
   const openModal = () => {
     setVisible(true)
@@ -210,7 +147,7 @@ const ContractInfo = (_props) => {
       <Row justify="center" align="top">
         <Col span={21}>
           <Form layout="vertical" form={form} onFinish={onFinish}>
-            {mapList(columns)}
+            {getFormItem(columns)}
             <Form.Item style={style}>
               <Button type="primary" onClick={() => search()}>
                 搜索

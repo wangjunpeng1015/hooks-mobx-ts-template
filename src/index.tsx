@@ -8,7 +8,6 @@ import moment from 'moment'
 import 'moment/locale/zh-cn'
 import 'antd/dist/antd.less'
 import './styles/main.scss'
-
 moment.locale('zh-cn')
 
 const App = () => {

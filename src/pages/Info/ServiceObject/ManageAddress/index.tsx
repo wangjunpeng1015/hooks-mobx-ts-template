@@ -21,13 +21,6 @@ interface columns {
   dataIndex?: string
   [_: string]: any
 }
-const style = {
-  marginRight: 20,
-  marginBottom: 0,
-  display: 'inline-block',
-  width: 200,
-  verticalAlign: 'middle',
-}
 
 const Basic = (_props) => {
   const [form] = Form.useForm()
@@ -82,10 +75,7 @@ const Basic = (_props) => {
       <Row justify="center" align="top">
         <Col span={22}>
           <Form layout="vertical" form={form} onFinish={onFinish}>
-            <Row>{getFormItem(store.searchListDom.slice(0, 6), style)}</Row>
-            <Row style={{ marginTop: '12px' }}>
-              {getFormItem(store.searchListDom.slice(6, 12), style)}
-            </Row>
+            {getFormItem(store.searchListDom)}
           </Form>
         </Col>
         <Col span={2}>

@@ -1,17 +1,5 @@
 import React from 'react'
-import {
-  Table,
-  Row,
-  Col,
-  DatePicker,
-  Input,
-  Select,
-  Button,
-  Space,
-  Modal,
-  Pagination,
-  Form,
-} from 'antd'
+import { DatePicker, Input, Select, Form } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { Props } from '@/utils'
 const { RangePicker } = DatePicker
@@ -34,7 +22,7 @@ export const getFormItem = (
   list: FormItem[],
   style: StyleType = {
     marginRight: 20,
-    marginBottom: 0,
+    marginBottom: 12,
     display: 'inline-block',
     width: 160,
     verticalAlign: 'middle',
@@ -53,11 +41,12 @@ export const getFormItem = (
             disabled={item.disabled}
             key={index}
           >
-            {item?.options.map((house) => (
-              <Select.Option key={house} value={house}>
-                {house}
-              </Select.Option>
-            ))}
+            {item.options &&
+              item.options.map((n: any) => (
+                <Select.Option key={n.key} value={n.value}>
+                  {n.value}
+                </Select.Option>
+              ))}
           </Select>
         </Form.Item>
       )
@@ -72,10 +61,20 @@ export const getFormItem = (
           />
         </Form.Item>
       )
+    } else if (item.type === 'picker') {
+      return (
+        <Form.Item key={index} name={key} style={style}>
+          <DatePicker style={style} />
+        </Form.Item>
+      )
     } else if (item.type === 'rangePicker') {
       return (
         <Form.Item key={index} name={key} style={{ ...style, width: 280 }}>
-          <RangePicker disabled={item.disabled} />
+          <RangePicker
+            onChange={(e, str) => extraProps.enter}
+            allowClear
+            disabled={item.disabled}
+          />
         </Form.Item>
       )
     } else if (item.type === 'rangeInput') {
@@ -88,19 +87,23 @@ export const getFormItem = (
           >
             <Input
               className="underline"
+              onPressEnter={extraProps.enter || null}
               style={{ width: 80 }}
-              placeholder={item.name}
+              placeholder="开始值"
             />
           </Form.Item>
           <Form.Item style={{ display: 'inline-block' }}>至</Form.Item>
           <Form.Item key={index} name={key} style={{ ...style, width: 80 }}>
             <Input
               className="underline"
+              onPressEnter={extraProps.enter || null}
               style={{ width: 80 }}
-              placeholder={item.name}
+              placeholder="结束值"
             />
           </Form.Item>
         </>
       )
+    } else {
+      return
     }
   })

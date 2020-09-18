@@ -5,6 +5,7 @@ import { toJS } from 'mobx'
 import { Table, Row, Col, Input, Select, Button, Modal, Pagination } from 'antd'
 import { PlusSquareFilled, SearchOutlined } from '@ant-design/icons'
 import { renderComponent } from '@/utils'
+import { getFormItem } from '@/utils/element'
 import Store from './basecStore'
 interface columns {
   title: string
@@ -19,7 +20,7 @@ const initModals = [
     data: null,
     key: 'contract',
     componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Contract/Modals/Contract.tsx',
+      'pages/Info/ServiceObject/ObjectShop/Contract/Modals/Contract.tsx',
   },
   {
     title: '企业信息',
@@ -28,7 +29,7 @@ const initModals = [
     data: null,
     key: 'enterprise',
     componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Contract/Modals/Enterprise.tsx',
+      'pages/Info/ServiceObject/ObjectShop/Contract/Modals/Enterprise.tsx',
   },
   {
     title: '照片列表',
@@ -37,7 +38,7 @@ const initModals = [
     data: null,
     key: 'photo',
     componentPath:
-      'pages/Info/ServiceObject/ManageShop/ObjectShop/Contract/Modals/PictrueList.tsx',
+      'pages/Info/ServiceObject/ObjectShop/Contract/Modals/PictrueList.tsx',
   },
   {
     title: '操作',
@@ -62,60 +63,7 @@ const Basic = (_props) => {
   const search = () => {
     store.getTableDate()
   }
-  const mapSearchList = (list) =>
-    list.map((item, index) => {
-      const key = item.key
-      if (item.type === 'select') {
-        return (
-          <Input.Group
-            key={index}
-            compact
-            style={{
-              marginRight: 30,
-              display: 'inline-block',
-              width: 200,
-              verticalAlign: 'middle',
-            }}
-          >
-            {/* <span style={{ lineHeight: "30px" }}>{item.name}：</span> */}
-            <Select
-              allowClear
-              placeholder={item.name}
-              style={{ minWidth: '160px' }}
-              value={key}
-              onChange={(e) => search({ key: e.join(',') }, { key: e })}
-            >
-              {item.options.map((house) => (
-                <Select.Option key={house} value={house}>
-                  {house}
-                </Select.Option>
-              ))}
-            </Select>
-          </Input.Group>
-        )
-      } else if (item.type === 'input') {
-        return (
-          <Input.Group
-            key={index}
-            compact
-            style={{
-              marginRight: 30,
-              display: 'inline-block',
-              width: 200,
-              verticalAlign: 'middle',
-            }}
-          >
-            {/* <span style={{ lineHeight: "30px" }}>{item.name}：</span> */}
-            <Input
-              style={{ width: 160 }}
-              placeholder={item.name}
-              onPressEnter={search}
-              suffix={<SearchOutlined style={{ cursor: 'point' }} />}
-            />
-          </Input.Group>
-        )
-      }
-    })
+
   const tableChange = (_pagination, _filters, sorter, _extra) => {
     const obj: any = {}
     if (Array.isArray(sorter)) {
@@ -147,18 +95,7 @@ const Basic = (_props) => {
     <>
       {/*  搜索条件  */}
       <Row justify="center" align="top">
-        <Col span={22}>
-          <Row>{mapSearchList(store.searchListDom.slice(0, 6))}</Row>
-          <Row style={{ marginTop: '12px' }}>
-            {mapSearchList(store.searchListDom.slice(6, 12))}
-          </Row>
-          <Row style={{ marginTop: '12px' }}>
-            {mapSearchList(store.searchListDom.slice(12, 18))}
-          </Row>
-          <Row style={{ marginTop: '12px' }}>
-            {mapSearchList(store.searchListDom.slice(18, 20))}
-          </Row>
-        </Col>
+        <Col span={22}>{getFormItem(store.searchListDom)}</Col>
         <Col span={2}>
           <Row>
             <Button
