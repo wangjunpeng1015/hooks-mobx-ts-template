@@ -1,25 +1,10 @@
 import React, { useState } from 'react'
-import {
-  Table,
-  Row,
-  Col,
-  DatePicker,
-  Input,
-  Select,
-  Button,
-  Space,
-  Modal,
-  Pagination,
-  Form,
-} from 'antd'
+import { Table, Row, Col, Button, Space, Modal, Pagination, Form } from 'antd'
 import { getFormItem } from '@/utils/element'
-import {
-  PlusSquareFilled,
-  SearchOutlined,
-  ContainerOutlined,
-} from '@ant-design/icons'
+import { PlusSquareFilled, ContainerOutlined } from '@ant-design/icons'
 import BillModal from './billInfo'
-const { RangePicker } = DatePicker
+import { ColumnsType } from 'antd/es/table'
+import { Columns } from '@/utils/interface'
 
 const style = {
   marginRight: 20,
@@ -76,7 +61,7 @@ const columnsInit = [
 ]
 
 //表格表头
-const tableColumns = [
+const tableColumns: ColumnsType<Columns> = [
   {
     title: '合同生成日期',
     dataIndex: 'name',

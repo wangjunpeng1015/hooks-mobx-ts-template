@@ -1,5 +1,5 @@
 import React from 'react'
-import { Props } from '@/utils'
+import { Props } from '@/utils/interface'
 
 const context: Props = {}
 

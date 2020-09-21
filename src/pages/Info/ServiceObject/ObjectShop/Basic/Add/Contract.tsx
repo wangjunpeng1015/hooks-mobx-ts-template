@@ -1,13 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getFormItem } from '@/utils/element'
-import { Select, Form, Input, Button, DatePicker, Row, Col } from 'antd'
+import { Select, Form, Button, Row, Col } from 'antd'
 const { Option } = Select
-const style = {
-  marginRight: 30,
-  display: 'inline-block',
-  width: 300,
-  verticalAlign: 'middle',
-}
+
 const columnsInit = [
   {
     name: '合同生成日期',

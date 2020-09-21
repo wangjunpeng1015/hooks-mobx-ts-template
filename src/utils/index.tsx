@@ -1,17 +1,9 @@
 import React from 'react'
 import * as Icon from '@ant-design/icons'
+import { ComponentParams } from '@/utils/interface'
+import { Props } from '@/utils/interface'
 const isDev = process.env.NODE_ENV === 'development' // 开发 or 生产
 
-export interface Props {
-  [props: string]: any
-}
-interface ComponentParams {
-  title: string
-  componentPath: string
-  key?: string | number
-  visible?: boolean
-  data?: any
-}
 // 匹配接口前缀
 export function autoMatch(prefix: string) {
   let baseUrl = ''

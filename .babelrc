@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }], // 配置对装饰器的支持
+    ["@babel/plugin-proposal-class-properties", { "loose": true }] // 支持类属性的插件
+  ]
+}

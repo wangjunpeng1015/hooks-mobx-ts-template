@@ -1,7 +1,7 @@
 import React from 'react'
 import { DatePicker, Input, Select, Form } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { Props } from '@/utils'
+import { Props } from '@/utils/interface'
 const { RangePicker } = DatePicker
 interface FormItem {
   name: string
@@ -18,15 +18,16 @@ interface StyleType {
   verticalAlign: string
 }
 
+export const Style = {
+  marginRight: 20,
+  marginBottom: 12,
+  display: 'inline-block',
+  width: 160,
+  verticalAlign: 'middle',
+}
 export const getFormItem = (
   list: FormItem[],
-  style: StyleType = {
-    marginRight: 20,
-    marginBottom: 12,
-    display: 'inline-block',
-    width: 160,
-    verticalAlign: 'middle',
-  },
+  style: StyleType = Style,
   extraProps: Props = {}
 ) =>
   list.map((item, index: number) => {

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "baseUrl": "./",
-    "module": "esnext",
+    "module": "ESNEXT",
     "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
@@ -14,7 +14,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": false, //报错
-    "strict": true, //严格模式
+    "strict": false, //严格模式
     "importHelpers": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,

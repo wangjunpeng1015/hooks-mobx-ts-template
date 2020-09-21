@@ -1,36 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
-import {
-  Table,
-  Modal,
-  Form,
-  Row,
-  Col,
-  Input,
-  Select,
-  Button,
-  Pagination,
-} from 'antd'
-import {
-  PlusSquareFilled,
-  SearchOutlined,
-  ExclamationCircleOutlined,
-} from '@ant-design/icons'
+import { Table, Modal, Form, Row, Col, Button, Pagination } from 'antd'
+import { PlusSquareFilled, ExclamationCircleOutlined } from '@ant-design/icons'
 import { getFormItem } from '@/utils/element'
 import Store from './basecStore'
 interface columns {
   title: string
   dataIndex?: string
   [_: string]: any
-}
-const style = {
-  marginRight: 20,
-  marginBottom: 0,
-  display: 'inline-block',
-  width: 200,
-  verticalAlign: 'middle',
 }
 
 const Basic = (_props) => {

@@ -1,31 +1,9 @@
 import React, { useState } from 'react'
-import {
-  Table,
-  Row,
-  Col,
-  DatePicker,
-  Input,
-  Select,
-  Button,
-  Space,
-  Modal,
-  Pagination,
-  Form,
-} from 'antd'
-import {
-  PlusSquareFilled,
-  SearchOutlined,
-  ContainerOutlined,
-} from '@ant-design/icons'
-import BillModal from './billInfo'
+import { Table, Row, Col, Button, Pagination, Form } from 'antd'
+import { PlusSquareFilled } from '@ant-design/icons'
 import { getFormItem } from '@/utils/element'
-const style = {
-  marginRight: 20,
-  marginBottom: 0,
-  display: 'inline-block',
-  width: 160,
-  verticalAlign: 'middle',
-}
+import { ColumnsType } from 'antd/es/table'
+import { Columns } from '@/utils/interface'
 //搜索条件
 const columnsInit = [
   {
@@ -46,7 +24,7 @@ const columnsInit = [
 ]
 
 //表格表头
-const tableColumns = [
+const tableColumns: ColumnsType<Columns> = [
   {
     title: '联系人',
     dataIndex: 'name',
@@ -124,11 +102,8 @@ const EnterpriseInfo = (_props) => {
         columns={tableColumns.concat([
           {
             title: '编辑',
-            render: (item) => (
-              <a className="link" onClick={() => openModal(item)}>
-                编辑
-              </a>
-            ),
+            dataIndex: 'edit',
+            render: (item) => <a className="link">编辑</a>,
             width: '40',
           },
         ])}

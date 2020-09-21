@@ -2,7 +2,17 @@
 import React, { useContext, useState } from 'react'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
-import { Table, Row, Col, Input, Select, Button, Modal, Pagination } from 'antd'
+import {
+  Table,
+  Row,
+  Col,
+  Input,
+  Form,
+  Select,
+  Button,
+  Modal,
+  Pagination,
+} from 'antd'
 import { PlusSquareFilled, SearchOutlined } from '@ant-design/icons'
 import { renderComponent } from '@/utils'
 import { getFormItem } from '@/utils/element'
@@ -51,6 +61,7 @@ const initModals = [
 ]
 
 const Basic = (_props) => {
+  const [form] = Form.useForm()
   const [modals, setModal] = useState(initModals)
   const [visible, setVisible] = useState(false)
   const [modalData, setModalData] = useState({})
@@ -91,11 +102,16 @@ const Basic = (_props) => {
   const modalClose = (modalKey) => {
     setVisible(false)
   }
+  const onFinish = () => {}
   return (
     <>
       {/*  搜索条件  */}
       <Row justify="center" align="top">
-        <Col span={22}>{getFormItem(store.searchListDom)}</Col>
+        <Col span={22}>
+          <Form layout="vertical" form={form} onFinish={onFinish}>
+            {getFormItem(store.searchListDom)}
+          </Form>
+        </Col>
         <Col span={2}>
           <Row>
             <Button

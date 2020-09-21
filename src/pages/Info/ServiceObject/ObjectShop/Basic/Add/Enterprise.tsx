@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getPoiInfo } from '@/utils/getPoiInfo'
-import { Tabs, Form, Input, Button, AutoComplete } from 'antd'
+import { Form, Input, Button, AutoComplete } from 'antd'
 import { MapCore } from '@/utils/Map/core'
-const style = {
-  marginRight: 30,
-  display: 'inline-block',
-  width: 300,
-  verticalAlign: 'middle',
-}
+import { Style } from '@/utils/element'
+
 let AMap: MapCore
 const ManageShopEnterprise = (props) => {
   const [form] = Form.useForm()
@@ -42,13 +38,13 @@ const ManageShopEnterprise = (props) => {
     <>
       <h3 className="title-header">{props.blockTitle}</h3>
       <Form layout="vertical" form={form} onFinish={onFinish}>
-        <Form.Item label="联系人" name="people" style={style}>
+        <Form.Item label="联系人" name="people" style={Style}>
           <Input placeholder="请输入联系人" />
         </Form.Item>
-        <Form.Item label="联系电话" name="people" style={style}>
+        <Form.Item label="联系电话" name="people" style={Style}>
           <Input placeholder="请输入联系电话" />
         </Form.Item>
-        <Form.Item label="地址" name="address" style={style}>
+        <Form.Item label="地址" name="address" style={Style}>
           <AutoComplete
             options={options}
             placeholder="请输入地址"

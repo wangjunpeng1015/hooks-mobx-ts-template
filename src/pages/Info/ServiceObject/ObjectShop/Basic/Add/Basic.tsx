@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
-import { observer } from 'mobx-react'
 import { getFormItem } from '@/utils/element'
-import { Tabs, Form, Input, Button, Select } from 'antd'
+import { Tabs, Form, Button } from 'antd'
 interface Column {
   key: string
   name: string

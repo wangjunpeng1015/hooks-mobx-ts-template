@@ -1,28 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import { toJS } from 'mobx'
-import {
-  Table,
-  Modal,
-  Form,
-  Row,
-  Col,
-  Input,
-  Select,
-  Button,
-  Pagination,
-} from 'antd'
+import { Table, Modal, Form, Row, Col, Button, Pagination } from 'antd'
 import { PlusSquareFilled, ExclamationCircleOutlined } from '@ant-design/icons'
 import { getFormItem } from '@/utils/element'
-
+import { Columns } from '@/utils/interface'
+import { ColumnsType } from 'antd/es/table'
 import Store from './Store'
 import './index.scss'
-interface columns {
-  title: string
-  dataIndex?: string
-  [_: string]: any
-}
 
 const Basic = (_props) => {
   const [form] = Form.useForm()
@@ -102,19 +88,18 @@ const Basic = (_props) => {
           selectedRowKeys: store.selectedRowKeys,
           onChange: onSelectChange,
         }}
-        columns={
-          toJS(store.columns).concat([
-            {
-              title: '操作',
-              render: (item) => (
-                <a className="link" onClick={() => openModal(item)}>
-                  编辑
-                </a>
-              ),
-              width: '40',
-            },
-          ]) as columns[]
-        }
+        columns={toJS([
+          ...store.columns,
+          {
+            title: '操作',
+            render: (item) => (
+              <a className="link" onClick={() => openModal(item)}>
+                编辑
+              </a>
+            ),
+            width: '40',
+          },
+        ])}
         pagination={false}
         dataSource={toJS(store.tableData)}
         onChange={tableChange}

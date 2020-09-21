@@ -1,82 +1,57 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Upload, Modal, Row, Col } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Upload, Modal } from 'antd'
 import { PictureOutlined, CloseOutlined } from '@ant-design/icons'
 
+interface FileType {
+  uid: string
+  name: string
+  status: string
+  url: string
+}
+
 const PictrueComponents = (props) => {
-  const [fileList, setFileList] = useState([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url:
-        'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ])
+  const [fileList, setFileList] = useState<FileType[]>([])
   const [preVisible, setPreVisible] = useState(false)
   const [previewImage, setPreviewImage] = useState()
+  useEffect(() => {
+    setFileList([
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url:
+          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url:
+          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url:
+          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url:
+          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url:
+          'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      },
+    ])
+  }, [])
   //预览
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
@@ -106,7 +81,7 @@ const PictrueComponents = (props) => {
         >
           <div className="file-upload">
             <PictureOutlined />
-            <p>点击上传照12片</p>
+            <p>点击上传照片</p>
           </div>
         </Upload>
         {fileList.map((pic) => (

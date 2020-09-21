@@ -45,12 +45,8 @@ module.exports = {
       },
       {
         test: /\.ts(x?)$/,
-        use: [
-          'babel-loader',
-          {
-            loader: 'awesome-typescript-loader',
-          },
-        ],
+        // use: ['babel-loader', 'awesome-typescript-loader'],
+        use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/,
         include: path.resolve(__dirname, srcDir),
       },

@@ -17,19 +17,19 @@ module.exports = merge(commonConfig, {
   // 出口
   output: {
     // 输出文件的目标路径
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../smart-sanitation'),
     // 输出的文件名
-    filename: '[name].[chunk:8].js',
+    filename: '[name].[chunkhash:8].js',
     chunkFilename: 'chunk/[name].[chunkhash:8].js',
     // 输出解析文件的目录。静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径
     publicPath: './',
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:8].css',
-      chunkFilename: 'chunk/[id].[contenthash:8].css',
-    }),
-    new webpack.HashedModuleIdsPlugin(),
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].[contenthash:8].css',
+    //   chunkFilename: 'chunk/[id].[contenthash:8].css',
+    // }),
+    // new webpack.HashedModuleIdsPlugin(),
     new webpack.DefinePlugin({
       // 定义环境和变量
       'process.env': {
@@ -40,11 +40,11 @@ module.exports = merge(commonConfig, {
   ],
   optimization: {
     minimizer: [
-      new CleanWebpackPlugin(),
-      new UglifyWebpackPlugin({
-        parallel: 4,
-      }),
-      new OptimizeCssAssetsWebpackPlugin(),
+      // new CleanWebpackPlugin(),
+      // new UglifyWebpackPlugin({
+      //   parallel: 4,
+      // }),
+      // new OptimizeCssAssetsWebpackPlugin(),
     ],
   },
 })

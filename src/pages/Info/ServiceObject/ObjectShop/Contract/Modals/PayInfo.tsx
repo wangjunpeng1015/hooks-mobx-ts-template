@@ -1,18 +1,8 @@
 import React, { useState } from 'react'
-import {
-  Table,
-  Row,
-  Col,
-  DatePicker,
-  Input,
-  Select,
-  Button,
-  Space,
-  Modal,
-  Pagination,
-  Form,
-} from 'antd'
+import { Table, Row, Col, Button, Pagination, Form } from 'antd'
 import { PlusSquareFilled } from '@ant-design/icons'
+import { ColumnsType } from 'antd/es/table'
+import { Columns } from '@/utils/interface'
 import { getFormItem } from '@/utils/element'
 import { useHistory } from 'react-router-dom'
 
@@ -47,7 +37,7 @@ const columnsInit = [
 ]
 
 //表格表头
-const tableColumns = [
+const tableColumns: ColumnsType<Columns> = [
   {
     title: '缴费时间',
     dataIndex: 'name',

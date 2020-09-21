@@ -18,6 +18,8 @@ import {
   AccountBookOutlined,
 } from '@ant-design/icons'
 import PayModal from './PayInfo'
+import { ColumnsType } from 'antd/es/table'
+import { Columns } from '@/utils/interface'
 const { RangePicker } = DatePicker
 
 const style = {
@@ -28,7 +30,7 @@ const style = {
   verticalAlign: 'middle',
 }
 //表格表头
-const tableColumns = [
+const tableColumns: ColumnsType<Columns> = [
   {
     title: '账单生成日期',
     dataIndex: 'name',
