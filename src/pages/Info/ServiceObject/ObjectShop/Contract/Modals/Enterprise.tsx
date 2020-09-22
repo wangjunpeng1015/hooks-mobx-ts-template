@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table, Row, Col, Button, Pagination, Form } from 'antd'
 import { PlusSquareFilled } from '@ant-design/icons'
 import { getFormItem } from '@/utils/element'
@@ -53,6 +53,9 @@ const EnterpriseInfo = (_props) => {
     current: 1,
   })
 
+  useEffect(() => {
+    setColumns([])
+  }, [])
   const search = () => {
     setLoading(true)
     setTableData([])

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Picture from '@/components/Picture'
 
 const PicktrueInfo = (_props) => {

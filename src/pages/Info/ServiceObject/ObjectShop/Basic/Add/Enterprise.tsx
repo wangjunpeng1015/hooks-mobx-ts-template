@@ -8,7 +8,7 @@ let AMap: MapCore
 const ManageShopEnterprise = (props) => {
   const [form] = Form.useForm()
   const [options, setOptions] = useState([])
-  const [mapInfo, setMapInfo] = useState([]) //地图附属信息
+  // const [mapInfo, setMapInfo] = useState([]) //地图附属信息
   useEffect(() => {
     AMap = new MapCore()
     AMap.init('poi-map', {
@@ -27,7 +27,7 @@ const ManageShopEnterprise = (props) => {
     const location = option.location.split(',').map((n: string) => Number(n))
     // AMap.addMarker(location)
     AMap.origin.setZoomAndCenter(17, location) //设置地图层级和位置
-    setMapInfo(option)
+    // setMapInfo(option)
   }
   //搜索poi
   const getPoi = async (keywords: string) => {

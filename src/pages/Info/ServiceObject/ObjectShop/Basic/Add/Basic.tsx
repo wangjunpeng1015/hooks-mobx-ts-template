@@ -1,142 +1,138 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { getFormItem } from '@/utils/element'
-import { Tabs, Form, Button } from 'antd'
-interface Column {
-  key: string
-  name: string
-  type: string
-  options?: []
-  [_: string]: any
-}
-const columns: Column[] = [
-  {
-    name: '商铺编号',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '名称',
-    type: 'input',
-    disabled: false,
-    key: 'name',
-  },
-  {
-    name: '起始地址ID',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'start',
-  },
-  {
-    name: '终止ID',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'end',
-  },
-  {
-    name: '地址',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '路段',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '门牌号',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '小门牌号',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '门牌号属性',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '方位属性',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '所属街镇',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '所属居委',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '所属小区',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '物业公司',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-
-  {
-    name: '经营属性',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '是否连锁店铺',
-    type: 'input',
-    disabled: false,
-    key: 'address',
-  },
-  {
-    name: '联系人',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '电话',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '所属企业',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-  {
-    name: '备注',
-    type: 'input',
-    disabled: true,
-    key: 'address',
-  },
-]
+import { Form, Button } from 'antd'
 
 const ManageShopBasicInfo = (props) => {
   const [form] = Form.useForm()
+  const [columns, setColumns] = useState<any[]>([])
+  useEffect(() => {
+    setColumns([
+      {
+        name: '商铺编号',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '名称',
+        type: 'input',
+        disabled: false,
+        key: 'name',
+      },
+      {
+        name: '起始地址ID',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'start',
+      },
+      {
+        name: '终止ID',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'end',
+      },
+      {
+        name: '地址',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '路段',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '门牌号',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '小门牌号',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '门牌号属性',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '方位属性',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '所属街镇',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '所属居委',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '所属小区',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '物业公司',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+
+      {
+        name: '经营属性',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '是否连锁店铺',
+        type: 'input',
+        disabled: false,
+        key: 'address',
+      },
+      {
+        name: '联系人',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '电话',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '所属企业',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+      {
+        name: '备注',
+        type: 'input',
+        disabled: true,
+        key: 'address',
+      },
+    ])
+  }, [])
   //表单提交
   const onFinish = (values) => {
     debugger

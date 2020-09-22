@@ -126,11 +126,7 @@ const PayInfo = (_props) => {
         columns={tableColumns.concat([
           {
             title: '编辑',
-            render: (item) => (
-              <a className="link" onClick={() => openModal(item)}>
-                编辑
-              </a>
-            ),
+            render: (item) => <a className="link">编辑</a>,
             width: '40',
           },
         ])}

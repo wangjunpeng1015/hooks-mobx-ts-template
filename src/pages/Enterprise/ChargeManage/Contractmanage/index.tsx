@@ -8,11 +8,6 @@ import { getFormItem } from '@/utils/element'
 
 import Store from './Store'
 import './index.scss'
-interface columns {
-  title: string
-  dataIndex?: string
-  [_: string]: any
-}
 
 const Basic = (_props) => {
   const [form] = Form.useForm()
@@ -92,19 +87,18 @@ const Basic = (_props) => {
           selectedRowKeys: store.selectedRowKeys,
           onChange: onSelectChange,
         }}
-        columns={
-          toJS(store.columns).concat([
-            {
-              title: '操作',
-              render: (item) => (
-                <a className="link" onClick={() => openModal(item)}>
-                  编辑
-                </a>
-              ),
-              width: '40',
-            },
-          ]) as columns[]
-        }
+        columns={toJS([
+          ...store.columns,
+          {
+            title: '操作',
+            render: (item) => (
+              <a className="link" onClick={() => openModal()}>
+                编辑
+              </a>
+            ),
+            width: '40',
+          },
+        ])}
         pagination={false}
         dataSource={toJS(store.tableData)}
         onChange={tableChange}

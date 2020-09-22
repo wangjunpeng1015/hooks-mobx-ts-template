@@ -10,10 +10,8 @@ module.exports = merge(commonConfig, {
   target: 'web',
   devtool: 'cheap-module-eval-source-map',
   output: {
-    // 输出文件的目标路径
-    path: path.resolve(__dirname, '../dist-dev'),
-    // 输出的文件名
-    filename: '[name].[chunk:8].js',
+    path: path.resolve(__dirname, '../dist'),
+    filename: '[name].js',
     publicPath: '/',
   },
   devServer: {

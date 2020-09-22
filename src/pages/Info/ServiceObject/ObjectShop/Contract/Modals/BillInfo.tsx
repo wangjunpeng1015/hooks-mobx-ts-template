@@ -85,6 +85,8 @@ const BillInfo = (_props) => {
   const openModal = () => {
     setVisible(true)
   }
+  //编辑
+  const edit = (data) => {}
   //提交表单
   const onFinish = () => {}
   return (

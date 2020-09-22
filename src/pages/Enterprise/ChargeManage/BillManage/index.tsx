@@ -5,8 +5,6 @@ import { toJS } from 'mobx'
 import { Table, Modal, Form, Row, Col, Button, Pagination } from 'antd'
 import { PlusSquareFilled, ExclamationCircleOutlined } from '@ant-design/icons'
 import { getFormItem } from '@/utils/element'
-import { Columns } from '@/utils/interface'
-import { ColumnsType } from 'antd/es/table'
 import Store from './Store'
 import './index.scss'
 
@@ -93,7 +91,7 @@ const Basic = (_props) => {
           {
             title: '操作',
             render: (item) => (
-              <a className="link" onClick={() => openModal(item)}>
+              <a className="link" onClick={() => openModal()}>
                 编辑
               </a>
             ),

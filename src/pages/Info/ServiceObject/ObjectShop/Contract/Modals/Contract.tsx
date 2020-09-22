@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Table, Row, Col, Button, Space, Modal, Pagination, Form } from 'antd'
 import { getFormItem } from '@/utils/element'
 import { PlusSquareFilled, ContainerOutlined } from '@ant-design/icons'
 import BillModal from './billInfo'
-import { ColumnsType } from 'antd/es/table'
-import { Columns } from '@/utils/interface'
 
 const style = {
   marginRight: 20,
@@ -61,7 +59,7 @@ const columnsInit = [
 ]
 
 //表格表头
-const tableColumns: ColumnsType<Columns> = [
+const tableColumns = [
   {
     title: '合同生成日期',
     dataIndex: 'name',
@@ -96,7 +94,7 @@ const tableColumns: ColumnsType<Columns> = [
 const ContractInfo = (_props) => {
   const [form] = Form.useForm()
   const [visible, setVisible] = useState(false)
-  const [columns, setColumns] = useState(columnsInit)
+  const [columns, setColumns] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
   const [tableData, setTableData] = useState([])
   const [pagination, setPagination] = useState({
@@ -104,7 +102,9 @@ const ContractInfo = (_props) => {
     pageSize: 10,
     current: 1,
   })
-
+  useEffect(() => {
+    setColumns(columnsInit)
+  }, [])
   const search = () => {
     setLoading(true)
     setTableData([])
@@ -122,8 +122,6 @@ const ContractInfo = (_props) => {
   const openModal = () => {
     setVisible(true)
   }
-  //弹窗关闭
-  const modalClose = (modalKey) => {}
   //提交表单
   const onFinish = () => {}
   return (
@@ -161,17 +159,18 @@ const ContractInfo = (_props) => {
       <Table
         loading={loading}
         className="table"
-        columns={tableColumns.concat([
+        columns={[
+          ...tableColumns,
           {
             title: '服务信息',
             render: (item) => (
-              <a className="link" onClick={() => openModal(item)}>
+              <a className="link" onClick={() => openModal()}>
                 服务信息
               </a>
             ),
             width: '40',
           },
-        ])}
+        ]}
         pagination={false}
         dataSource={tableData}
       />

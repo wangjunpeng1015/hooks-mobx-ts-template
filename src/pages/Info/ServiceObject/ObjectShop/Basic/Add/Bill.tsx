@@ -46,10 +46,11 @@ const columnsInit = [
 ]
 const ManageShopContract = (props) => {
   const [form] = Form.useForm()
-  const [columns, setColumns] = useState(columnsInit)
-  const [options, setOptions] = useState([])
+  const [columns, setColumns] = useState<any[]>([])
+  const [options, setOptions] = useState<any[]>([])
 
   useEffect(() => {
+    setColumns(columnsInit)
     setOptions([
       {
         name: 'aa',

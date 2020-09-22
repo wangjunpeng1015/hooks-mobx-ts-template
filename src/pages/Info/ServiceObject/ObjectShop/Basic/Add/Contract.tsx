@@ -3,124 +3,124 @@ import { getFormItem } from '@/utils/element'
 import { Select, Form, Button, Row, Col } from 'antd'
 const { Option } = Select
 
-const columnsInit = [
-  {
-    name: '合同生成日期',
-    type: 'picker',
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '合同编号',
-    type: 'input',
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '合同开始日期',
-    type: 'picker',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '合同结束日期',
-    type: 'picker',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '收运单位',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '收运单位备注',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '干垃圾收运方式',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '干垃圾作业频率',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '干垃圾作业次数',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '干垃圾作业桶数',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '湿垃圾作业评率',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '湿垃圾作业次数',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '湿垃圾作业桶数',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '签约日期',
-    type: 'picker',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '签约人员',
-    type: 'select',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '备注',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-]
 const ManageShopContract = (props) => {
   const [form] = Form.useForm()
-  const [columns, setColumns] = useState(columnsInit)
-  const [options, setOptions] = useState([])
+  const [columns, setColumns] = useState<any[]>([])
+  const [options, setOptions] = useState<any[]>([])
 
   useEffect(() => {
+    setColumns([
+      {
+        name: '合同生成日期',
+        type: 'picker',
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '合同编号',
+        type: 'input',
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '合同开始日期',
+        type: 'picker',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '合同结束日期',
+        type: 'picker',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '收运单位',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '收运单位备注',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '干垃圾收运方式',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '干垃圾作业频率',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '干垃圾作业次数',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '干垃圾作业桶数',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '湿垃圾作业评率',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '湿垃圾作业次数',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '湿垃圾作业桶数',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '签约日期',
+        type: 'picker',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '签约人员',
+        type: 'select',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+      {
+        name: '备注',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'id',
+      },
+    ])
     setOptions([
       {
         name: 'aa',

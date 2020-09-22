@@ -2,49 +2,52 @@ import React, { useEffect, useState } from 'react'
 import { getFormItem } from '@/utils/element'
 import { Form, Button } from 'antd'
 
-const columnsInit = [
-  {
-    name: '缴费时间',
-    type: 'picker',
-    key: 'id',
-  },
-  {
-    name: '付款方式',
-    type: 'select',
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '付款账号',
-    type: 'input',
-    disabled: false,
-    options: [],
-    key: 'id',
-  },
-  {
-    name: '金额',
-    type: 'input',
-    disabled: false,
-    key: 'id',
-  },
-  {
-    name: '付款人',
-    type: 'input',
-    disabled: false,
-    key: 'id',
-  },
-  {
-    name: '付款人联系电话',
-    type: 'input',
-    disabled: false,
-    key: 'id',
-  },
-]
 const ManageShopContract = (props) => {
   const [form] = Form.useForm()
-  const [columns, setColumns] = useState(columnsInit)
+  const [columns, setColumns] = useState<any[]>([])
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    setColumns([
+      [
+        {
+          name: '缴费时间',
+          type: 'picker',
+          key: 'id',
+        },
+        {
+          name: '付款方式',
+          type: 'select',
+          options: [],
+          key: 'id',
+        },
+        {
+          name: '付款账号',
+          type: 'input',
+          disabled: false,
+          options: [],
+          key: 'id',
+        },
+        {
+          name: '金额',
+          type: 'input',
+          disabled: false,
+          key: 'id',
+        },
+        {
+          name: '付款人',
+          type: 'input',
+          disabled: false,
+          key: 'id',
+        },
+        {
+          name: '付款人联系电话',
+          type: 'input',
+          disabled: false,
+          key: 'id',
+        },
+      ],
+    ])
+  }, [])
 
   //表单提交
   const onFinish = (values: any) => {
