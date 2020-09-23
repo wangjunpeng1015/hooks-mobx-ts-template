@@ -45,7 +45,6 @@ project_name="smart-sanitation"
 if [ "$ENV_TYPE" = "test" ]; then
   project_name="smart-sanitation-test"
 fi
-echo $server_port $base/deploy/$ENV_TYPE/$now.tar.gz $server_host:$server_dist/$project_name/
 
 # 指定当前目录 请保证处于此项目根目录
 ssh -p $server_port $server_host "mkdir -p $server_dist/$project_name/"
