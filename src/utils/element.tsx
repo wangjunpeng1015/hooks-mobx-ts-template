@@ -104,7 +104,5 @@ export const getFormItem = (
           </Form.Item>
         </>
       )
-    } else {
-      return
     }
   })

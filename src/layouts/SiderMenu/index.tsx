@@ -1,12 +1,11 @@
 /* eslint-disable import/extensions */
-// @ts-nocheck
 import React, { useEffect, useState, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { observer } from 'mobx-react'
-import { Layout, Menu, Row } from 'antd'
-import { iconBC } from '@/utils'
+import { Layout, Menu } from 'antd'
 import { appStores } from '@/stores'
 import './style.scss'
+const iconFont = (icon) => <i className={`zhhwfont menu-icon ${icon}`}></i>
 
 const renderMenuItem = (target: any) => {
   return target
@@ -19,7 +18,7 @@ const renderMenuItem = (target: any) => {
         return (
           <Menu.SubMenu
             key={subMenu.path}
-            icon={iconBC(subMenu.icon)}
+            icon={iconFont(subMenu.icon)}
             title={subMenu.name}
           >
             {renderMenuItem(subMenu.childRoutes)}
@@ -27,7 +26,7 @@ const renderMenuItem = (target: any) => {
         )
       }
       return (
-        <Menu.Item key={subMenu.path} icon={iconBC(subMenu.icon)}>
+        <Menu.Item key={subMenu.path} icon={iconFont(subMenu.icon)}>
           <Link to={subMenu.path}>
             <span>{subMenu.name}</span>
           </Link>

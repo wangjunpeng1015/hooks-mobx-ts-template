@@ -2,6 +2,9 @@ const webpack = require('webpack')
 const path = require('path')
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.config')
+//可视化打包分析
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 //打包gzip
 const CompressionPlugin = require('compression-webpack-plugin')
 // 复制静态资源
@@ -29,6 +32,7 @@ module.exports = merge(commonConfig, {
     publicPath: './',
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new webpack.DefinePlugin({
       // 定义环境和变量
       'process.env': {

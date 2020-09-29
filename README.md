@@ -4,16 +4,22 @@
 
 ## 开发
 
+### 启动
+
 ```shell
 npm run start
 ```
 
+### Icon
+
+尽量使用 antd 内置，其它使用 iconfont 上图标
+
 ## 部署
 
 ```shell
-git checkout master
-git pull origin master
+git pull origin master #拉取最新master
 npm run build # TODO需要区分正式打包和测试打包sh上传已做
+git checkout deploy #切换到deploy分支发布
 npm run deploy publish # npm run deploy test # 正式上传和测试上传
 ```
 

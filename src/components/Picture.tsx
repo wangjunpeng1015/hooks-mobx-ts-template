@@ -84,8 +84,9 @@ const PictrueComponents = (props) => {
             <p>点击上传照片</p>
           </div>
         </Upload>
-        {fileList.map((pic) => (
+        {fileList.map((pic, index) => (
           <div
+            key={index}
             className="photo-list-content"
             onClick={() => handlePreview(pic)}
           >

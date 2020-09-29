@@ -8,44 +8,42 @@ const ManageShopContract = (props) => {
 
   useEffect(() => {
     setColumns([
-      [
-        {
-          name: '缴费时间',
-          type: 'picker',
-          key: 'id',
-        },
-        {
-          name: '付款方式',
-          type: 'select',
-          options: [],
-          key: 'id',
-        },
-        {
-          name: '付款账号',
-          type: 'input',
-          disabled: false,
-          options: [],
-          key: 'id',
-        },
-        {
-          name: '金额',
-          type: 'input',
-          disabled: false,
-          key: 'id',
-        },
-        {
-          name: '付款人',
-          type: 'input',
-          disabled: false,
-          key: 'id',
-        },
-        {
-          name: '付款人联系电话',
-          type: 'input',
-          disabled: false,
-          key: 'id',
-        },
-      ],
+      {
+        name: '缴费时间',
+        type: 'picker',
+        key: 'a',
+      },
+      {
+        name: '付款方式',
+        type: 'select',
+        options: [],
+        key: 'b',
+      },
+      {
+        name: '付款账号',
+        type: 'input',
+        disabled: false,
+        options: [],
+        key: 'c',
+      },
+      {
+        name: '金额',
+        type: 'input',
+        disabled: false,
+        key: 'd',
+      },
+      {
+        name: '付款人',
+        type: 'input',
+        disabled: false,
+        key: 'e',
+      },
+      {
+        name: '付款人联系电话',
+        type: 'input',
+        disabled: false,
+        key: 'f',
+      },
     ])
   }, [])
 
@@ -53,7 +51,6 @@ const ManageShopContract = (props) => {
   const onFinish = (values: any) => {
     debugger
   }
-
   return (
     <>
       <h3 className="title-header"> {props.blockTitle} </h3>

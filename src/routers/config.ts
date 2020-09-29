@@ -21,46 +21,42 @@ const config = [
         // exact: true,
         component: BasicLayout, // 基本布局
         childRoutes: [
-          {
-            path: '/daily',
-            name: '日常作业情况',
-            icon: 'MessageOutlined',
-            childRoutes: [
-              {
-                path: '/daily/transport-record',
-                name: '清运记录',
-                icon: 'MessageOutlined',
-                component: lazy(() => import('@/pages/System/User')),
-              },
-            ],
-          },
+          // {
+          //   path: '/daily',
+          //   name: '日常作业情况',
+          //   childRoutes: [
+          //     {
+          //       path: '/daily/transport-record',
+          //       name: '清运记录',
+          //       icon: 'MessageOutlined',
+          //       component: lazy(() => import('@/pages/System/User')),
+          //     },
+          //   ],
+          // },
           {
             path: '/info',
             name: '作业信息管理',
-            icon: 'MessageOutlined',
             childRoutes: [
-              {
-                path: '/info/point-manage',
-                name: '作业点管理',
-                icon: 'MessageOutlined',
-                childRoutes: [
-                  {
-                    path: '/info/point-manage/transport-shop',
-                    name: '清运店铺管理',
-                    icon: 'MessageOutlined',
-                    component: lazy(() => import('@/pages/System/User')),
-                  },
-                ],
-              },
+              // {
+              //   path: '/info/point-manage',
+              //   name: '作业站点管理',
+              //   icon: 'iconweizhi',
+              //   childRoutes: [
+              //     {
+              //       path: '/info/point-manage/transport-shop',
+              //       name: '清运店铺管理',
+              //       component: lazy(() => import('@/pages/System/User')),
+              //     },
+              //   ],
+              // },
               {
                 path: '/info/service-object',
                 name: '服务对象管理',
-                icon: 'MessageOutlined',
+                icon: 'iconduixiangguanli',
                 childRoutes: [
                   {
                     path: '/info/service-object/manage-shop',
                     name: '商铺管理',
-                    icon: 'MessageOutlined',
                     component: lazy(
                       () => import('@/pages/Info/ServiceObject/ObjectShop')
                     ),
@@ -79,7 +75,6 @@ const config = [
                   {
                     path: '/info/service-object/manage-address',
                     name: '地址库管理',
-                    icon: 'MessageOutlined',
                     component: lazy(
                       () => import('@/pages/Info/ServiceObject/ManageAddress')
                     ),
@@ -91,17 +86,15 @@ const config = [
           {
             path: '/enterprise',
             name: '企业综合管理',
-            icon: 'MessageOutlined',
             childRoutes: [
               {
                 path: '/enterprise/enterprise-charge',
                 name: '收费管理',
-                icon: 'MessageOutlined',
+                icon: 'iconshoufei',
                 childRoutes: [
                   {
                     path: '/enterprise/enterprise-charge/contract',
                     name: '合同管理',
-                    icon: 'MessageOutlined',
                     component: lazy(
                       () =>
                         import('@/pages/Enterprise/ChargeManage/ContractManage')
@@ -110,7 +103,6 @@ const config = [
                   {
                     path: '/enterprise/enterprise-charge/bill',
                     name: '账单管理',
-                    icon: 'MessageOutlined',
                     component: lazy(
                       () => import('@/pages/Enterprise/ChargeManage/BillManage')
                     ),
@@ -118,7 +110,6 @@ const config = [
                   {
                     path: '/enterprise/enterprise-charge/payment',
                     name: '缴费管理',
-                    icon: 'MessageOutlined',
                     component: lazy(
                       () =>
                         import('@/pages/Enterprise/ChargeManage/PaymentManage')

@@ -10,9 +10,9 @@ class LoginStore {
   @action.bound
   async login({ username, password }) {
     message.success('登录成功，即将跳转...', 2)
-    // return new Promise((resolve, reject) => {
-    //   return resolve()
-    // })
+    return new Promise((resolve, reject) => {
+      return resolve()
+    })
     const res = await axios.post(`/api/user/login`, {
       username,
       password,
